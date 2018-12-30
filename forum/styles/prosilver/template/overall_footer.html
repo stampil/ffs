@@ -57,7 +57,181 @@
 </div>
 
 </div>
+<div style="top:0px; padding:10px; position:relative; background:white; float:right; width:300px; border: 1px solid black;  z-index:1; box-shadow: 1px 1px 12px #555;">
+	
+	
+	<div style="border-bottom:1px solid rgb(204, 204, 204); margin-bottom:10px;">
+		<h3>Evènements à venir</h3>
+		<table>
+		<!-- BEGIN events -->
+			<tr><td>-</td><td><u><b><span style="color:black;">{events.DATE}</span></b></u></td><td>-</td><td><b><span ><a href="http://2nd-ffs.org/forum/calendar.php?view=event&calEid={events.ID}" style="color:#{events.COLOR}">{events.TYPE} - {events.EVENT}</a></span></b></td></tr>
+		<!-- END events -->
+		</table>
+	</div>
+	
+	
+	<div class="forabg">
+		<div class="inner">
+			<span class="corners-top"><span ></span></span>
+			<ul class="topiclist">
+				<li class="header">
+					<dl class="icon2">
+						<dt>Teamspeak 3 Viewer</dt>
+						<dd></dd><dd></dd><dd></dd>
+					</dl>
+				</li>
+			</ul>
+			<ul class="topiclist forums">
+				<div id="ts3viewer_1112408" style=""> </div>
 
+				<script src="https://static.tsviewer.com/short_expire/js/ts3viewer_loader.js"></script>
+				<script>
+				var ts3v_url_1 = "https://www.tsviewer.com/ts3viewer.php?ID=1112408&text=757575&text_size=12&text_family=1&text_s_color=000000&text_s_weight=normal&text_s_style=normal&text_s_variant=normal&text_s_decoration=none&text_i_color=&text_i_weight=normal&text_i_style=normal&text_i_variant=normal&text_i_decoration=none&text_c_color=&text_c_weight=normal&text_c_style=normal&text_c_variant=normal&text_c_decoration=none&text_u_color=000000&text_u_weight=normal&text_u_style=normal&text_u_variant=normal&text_u_decoration=none&text_s_color_h=&text_s_weight_h=bold&text_s_style_h=normal&text_s_variant_h=normal&text_s_decoration_h=none&text_i_color_h=000000&text_i_weight_h=bold&text_i_style_h=normal&text_i_variant_h=normal&text_i_decoration_h=none&text_c_color_h=&text_c_weight_h=normal&text_c_style_h=normal&text_c_variant_h=normal&text_c_decoration_h=none&text_u_color_h=&text_u_weight_h=bold&text_u_style_h=normal&text_u_variant_h=normal&text_u_decoration_h=none&iconset=default_colored_2014_tsv";
+				ts3v_display.init(ts3v_url_1, 1112408, 100);
+				</script>
+			
+				<!-- <div id="ts3viewer_1085671" style=""> </div>
+
+				<script src="https://static.tsviewer.com/short_expire/js/ts3viewer_loader.js"></script>
+				
+				<script>
+				var ts3v_url_1 = "https://www.tsviewer.com/ts3viewer.php?ID=1085671&text=757575&text_size=12&text_family=1&text_s_color=000000&text_s_weight=normal&text_s_style=normal&text_s_variant=normal&text_s_decoration=none&text_i_color=&text_i_weight=normal&text_i_style=normal&text_i_variant=normal&text_i_decoration=none&text_c_color=&text_c_weight=normal&text_c_style=normal&text_c_variant=normal&text_c_decoration=none&text_u_color=000000&text_u_weight=normal&text_u_style=normal&text_u_variant=normal&text_u_decoration=none&text_s_color_h=&text_s_weight_h=bold&text_s_style_h=normal&text_s_variant_h=normal&text_s_decoration_h=none&text_i_color_h=000000&text_i_weight_h=bold&text_i_style_h=normal&text_i_variant_h=normal&text_i_decoration_h=none&text_c_color_h=&text_c_weight_h=normal&text_c_style_h=normal&text_c_variant_h=normal&text_c_decoration_h=none&text_u_color_h=&text_u_weight_h=bold&text_u_style_h=normal&text_u_variant_h=normal&text_u_decoration_h=none&iconset=default_colored_2014_tsv";
+				ts3v_display.init(ts3v_url_1, 1085671, 100);
+				</script> -->
+			</ul>
+		<span class="corners-bottom"><span></span></span>
+		</div>
+	</div>
+	
+	<div style="margin-bottom:10px;">
+		<h3>Liste des pilotes</h3>
+		
+		<div style="margin:auto; width:90%">
+		<table>
+		<tr><td colspan=3 style="text-align:center;"><span style="font-weight:bold;"><a href="/forum/module_training.php?FFS=12">FFS 1/2 - M-2000C</a></span></td></tr>
+
+			<!-- BEGIN pilote_ffs12 -->
+			<tr style="height:20px;">
+				<td><a href="/forum/fiche_pilote.php?id={pilote_ffs12.ID_FORUM}">{pilote_ffs12.PSEUDO}</a>&nbsp; &nbsp;</td>
+				<td>
+					<table style="border-collapse:collapse;">
+						<tr>
+							<td width={pilote_ffs12.LARGEUR_VALID} background="/forum/images/valid_back.png"  style="height:18px;"></td>
+							<td width={pilote_ffs12.LARGEUR_WIP} background="/forum/images/wip_back.png" style="height:18px;"></td>
+							<td width={pilote_ffs12.LARGEUR_NO} background="/forum/images/no_back.png" style="height:18px;"></td>
+						</tr>
+					</table>
+				</td>
+				<td align="right">
+					&nbsp; &nbsp; {pilote_ffs12.PROGRESSION} %
+				</td>
+			</tr>
+		<!-- END pilote_ffs2 -->
+		<!-- IF 0 -->
+			<tr><td colspan=3 style="text-align:center;"><span style="font-weight:bold;"><a href="/forum/module_training.php?FFS=02">FFS 02 - F15C</a></span></td></tr>
+
+			<!-- BEGIN pilote_ffs2 -->
+			<tr style="height:20px;">
+				<td><a href="/forum/fiche_pilote.php?id={pilote_ffs2.ID_FORUM}">{pilote_ffs2.PSEUDO}</a>&nbsp; &nbsp;</td>
+				<td>
+					<table style="border-collapse:collapse;">
+						<tr>
+							<td width={pilote_ffs2.LARGEUR_VALID} background="/forum/images/valid_back.png"  style="height:18px;"></td>
+							<td width={pilote_ffs2.LARGEUR_WIP} background="/forum/images/wip_back.png" style="height:18px;"></td>
+							<td width={pilote_ffs2.LARGEUR_NO} background="/forum/images/no_back.png" style="height:18px;"></td>
+						</tr>
+					</table>
+				</td>
+				<td align="right">
+					&nbsp; &nbsp; {pilote_ffs2.PROGRESSION} %
+				</td>
+			</tr>
+		<!-- END pilote_ffs2 -->
+		<!-- ENDIF -->
+			<tr><td colspan=3 style="text-align:center;"><span style="font-weight:bold;"><a href="/forum/module_training.php?FFS=03">FFS XX - Mercenaires</a></span></td></tr>
+		<!-- BEGIN pilote_ffs3 -->
+			<tr style="height:20px;">
+				<td><a href="/forum/fiche_pilote.php?id={pilote_ffs3.ID_FORUM}">{pilote_ffs3.PSEUDO}</a>&nbsp; &nbsp;</td>
+				<td>
+					<table style="border-collapse:collapse;">
+						<tr>
+							<td width={pilote_ffs3.LARGEUR_VALID} background="/forum/images/valid_back.png"  style="height:18px;"></td>
+							<td width={pilote_ffs3.LARGEUR_WIP} background="/forum/images/wip_back.png" style="height:18px;"></td>
+							<td width={pilote_ffs3.LARGEUR_NO} background="/forum/images/no_back.png" style="height:18px;"></td>
+						</tr>
+					</table>
+				</td>
+				<td align="right">
+					&nbsp; &nbsp; {pilote_ffs3.PROGRESSION} %
+				</td>
+			</tr>
+		<!-- END pilote_ffs3 -->
+		<!-- IF 0 -->
+			<tr><td colspan=3 style="text-align:center;"><span style="font-weight:bold;"><a href="/forum/module_training.php?FFS=04">FFS 04 - SU-33</a></span></td></tr>
+		<!-- BEGIN pilote_ffs4 -->
+			<tr style="height:20px;">
+				<td><a href="/forum/fiche_pilote.php?id={pilote_ffs4.ID_FORUM}">{pilote_ffs4.PSEUDO}</a>&nbsp; &nbsp;</td>
+				<td>
+					<table style="border-collapse:collapse;">
+						<tr>
+							<td width={pilote_ffs4.LARGEUR_VALID} background="/forum/images/valid_back.png"  style="height:18px;"></td>
+							<td width={pilote_ffs4.LARGEUR_WIP} background="/forum/images/wip_back.png" style="height:18px;"></td>
+							<td width={pilote_ffs4.LARGEUR_NO} background="/forum/images/no_back.png" style="height:18px;"></td>
+						</tr>
+					</table>
+				</td>
+				<td align="right">
+					&nbsp; &nbsp; {pilote_ffs4.PROGRESSION} %
+				</td>
+			</tr>
+		<!-- END pilote_ffs4 -->
+		<!-- ENDIF -->
+			<tr><td colspan=3 style="text-align:center;"><span style="font-weight:bold;"><a href="/forum/module_training.php?FFS=06">FFS 06 - Hélicoptères</a></span></td></tr>
+		<!-- BEGIN pilote_ffs6 -->
+			<tr style="height:20px;">
+				<td><a href="/forum/fiche_pilote.php?id={pilote_ffs6.ID_FORUM}">{pilote_ffs6.PSEUDO}</a>&nbsp; &nbsp;</td>
+				<td>
+					<table style="border-collapse:collapse;">
+						<tr>
+							<td width={pilote_ffs6.LARGEUR_VALID} background="/forum/images/valid_back.png"  style="height:18px;"></td>
+							<td width={pilote_ffs6.LARGEUR_WIP} background="/forum/images/wip_back.png" style="height:18px;"></td>
+							<td width={pilote_ffs6.LARGEUR_NO} background="/forum/images/no_back.png" style="height:18px;"></td>
+						</tr>
+					</table>
+				</td>
+				<td align="right">
+					&nbsp; &nbsp; {pilote_ffs6.PROGRESSION} %
+				</td>
+			</tr>
+		<!-- END pilote_ffs6 -->
+		<!-- IF 0 -->
+			<tr><td colspan=3 style="text-align:center;"><span style="font-weight:bold;"><a href="/forum/module_training.php?FFS=16">FFS 06 - UH-1H / Mi-8</a></span></td></tr>
+		<!-- BEGIN pilote_ffs16 -->
+			<tr style="height:20px;">
+				<td><a href="/forum/fiche_pilote.php?id={pilote_ffs16.ID_FORUM}">{pilote_ffs16.PSEUDO}</a>&nbsp; &nbsp;</td>
+				<td>
+					<table style="border-collapse:collapse;">
+						<tr>
+							<td width={pilote_ffs16.LARGEUR_VALID} background="/forum/images/valid_back.png"  style="height:18px;"></td>
+							<td width={pilote_ffs16.LARGEUR_WIP} background="/forum/images/wip_back.png" style="height:18px;"></td>
+							<td width={pilote_ffs16.LARGEUR_NO} background="/forum/images/no_back.png" style="height:18px;"></td>
+						</tr>
+					</table>
+				</td>
+				<td align="right">
+					&nbsp; &nbsp; {pilote_ffs16.PROGRESSION} %
+				</td>
+			</tr>
+		<!-- END pilote_ffs16 -->
+		<!-- ENDIF -->
+		<tr><td colspan=3></td></tr>
+		<tr><td colspan=3 style="text-align:center;"><a href="/forum/module_training.php">Aller au module de formation</a></td></tr>
+		</table>
+		</div>
+		
+</div>
+</div>
+                </div>
 <div>
 	<a id="bottom" class="anchor" accesskey="z"></a>
 	<!-- IF not S_IS_BOT -->{RUN_CRON_TASK}<!-- ENDIF -->
