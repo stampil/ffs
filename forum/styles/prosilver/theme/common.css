@@ -1306,3 +1306,9 @@ ul.linklist:after,
 .forum_read{
     background-image: url('../imageset/forum_read.png') !important;
 }
+.forum_link		{ background-image: url("../imageset/forum_link.gif") !important; }
+.forum_read_locked	{ background-image: url("../imageset/forum_read_locked.gif") !important; }
+.forum_read_subforum	{ background-image: url("../imageset/forum_read_subforum.png") !important; }
+.forum_unread		{ background-image: url("../imageset/forum_unread.png") !important; }
+.forum_unread_locked	{ background-image: url("../imageset/forum_unread_locked.gif") !important; }
+.forum_unread_subforum	{ background-image: url("../imageset/forum_unread_subforum.gif") !important; }
