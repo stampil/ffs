@@ -1285,3 +1285,24 @@ ul.linklist:after,
 .dropdown .clone.hidden + li {
 	border-top: none;
 }
+
+/* FFS theme
+-------------------------------------- */
+.forabg {
+    background-color: black !important;
+    background-image: none !important;
+
+}
+
+.headerbar[role=banner]{
+    display:none;
+}
+
+#ban_ffs{
+    width:100%;
+    margin-bottom:5px;
+}
+
+.forum_read{
+    background-image: url('../imageset/forum_read.png') !important;
+}
