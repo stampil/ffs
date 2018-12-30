@@ -1,0 +1,222 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="{S_CONTENT_DIRECTION}" lang="{S_USER_LANG}" xml:lang="{S_USER_LANG}">
+<head>
+
+<meta http-equiv="content-type" content="text/html; charset={S_CONTENT_ENCODING}" />
+<meta http-equiv="content-style-type" content="text/css" />
+<meta http-equiv="content-language" content="{S_USER_LANG}" />
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="resource-type" content="document" />
+<meta name="distribution" content="global" />
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+{META}
+<title>{PAGE_TITLE} &bull; {SITENAME} <!-- IF S_IN_MCP -->{L_MCP} &bull; <!-- ELSEIF S_IN_UCP -->{L_UCP} &bull; <!-- ENDIF --></title>
+
+<!-- IF S_ENABLE_FEEDS -->
+	<!-- IF S_ENABLE_FEEDS_OVERALL --><link rel="alternate" type="application/atom+xml" title="{L_FEED} - {SITENAME}" href="{U_FEED}" /><!-- ENDIF -->
+	<!-- IF S_ENABLE_FEEDS_NEWS --><link rel="alternate" type="application/atom+xml" title="{L_FEED} - {L_FEED_NEWS}" href="{U_FEED}?mode=news" /><!-- ENDIF -->
+	<!-- IF S_ENABLE_FEEDS_FORUMS --><link rel="alternate" type="application/atom+xml" title="{L_FEED} - {L_ALL_FORUMS}" href="{U_FEED}?mode=forums" /><!-- ENDIF -->
+	<!-- IF S_ENABLE_FEEDS_TOPICS --><link rel="alternate" type="application/atom+xml" title="{L_FEED} - {L_FEED_TOPICS_NEW}" href="{U_FEED}?mode=topics" /><!-- ENDIF -->
+	<!-- IF S_ENABLE_FEEDS_TOPICS_ACTIVE --><link rel="alternate" type="application/atom+xml" title="{L_FEED} - {L_FEED_TOPICS_ACTIVE}" href="{U_FEED}?mode=topics_active" /><!-- ENDIF -->
+	<!-- IF S_ENABLE_FEEDS_FORUM and S_FORUM_ID --><link rel="alternate" type="application/atom+xml" title="{L_FEED} - {L_FORUM} - {FORUM_NAME}" href="{U_FEED}?f={S_FORUM_ID}" /><!-- ENDIF -->
+	<!-- IF S_ENABLE_FEEDS_TOPIC and S_TOPIC_ID --><link rel="alternate" type="application/atom+xml" title="{L_FEED} - {L_TOPIC} - {TOPIC_TITLE}" href="{U_FEED}?f={S_FORUM_ID}&amp;t={S_TOPIC_ID}" /><!-- ENDIF -->
+<!-- ENDIF -->
+
+<!--
+	phpBB style name: prosilver
+	Based on style:   prosilver (this is the default phpBB3 style)
+	Original author:  Tom Beddard ( http://www.subBlue.com/ )
+	Modified by:
+-->
+
+<script type="text/javascript">
+// <![CDATA[
+	var jump_page = '{LA_JUMP_PAGE}:';
+	var on_page = '{ON_PAGE}';
+	var per_page = '{PER_PAGE}';
+	var base_url = '{A_BASE_URL}';
+	var style_cookie = 'phpBBstyle';
+	var style_cookie_settings = '{A_COOKIE_SETTINGS}';
+	var onload_functions = new Array();
+	var onunload_functions = new Array();
+
+	<!-- IF S_USER_PM_POPUP and S_NEW_PM -->
+		var url = '{UA_POPUP_PM}';
+		window.open(url.replace(/&amp;/g, '&'), '_phpbbprivmsg', 'height=225,resizable=yes,scrollbars=yes, width=400');
+	<!-- ENDIF -->
+
+	/**
+	* Find a member
+	*/
+	function find_username(url)
+	{
+		popup(url, 760, 570, '_usersearch');
+		return false;
+	}
+
+	/**
+	* New function for handling multiple calls to window.onload and window.unload by pentapenguin
+	*/
+	window.onload = function()
+	{
+		for (var i = 0; i < onload_functions.length; i++)
+		{
+			eval(onload_functions[i]);
+		}
+	};
+
+	window.onunload = function()
+	{
+		for (var i = 0; i < onunload_functions.length; i++)
+		{
+			eval(onunload_functions[i]);
+		}
+	};
+
+// ]]>
+</script>
+<script type="text/javascript" src="{T_SUPER_TEMPLATE_PATH}/styleswitcher.js"></script>
+<script type="text/javascript" src="{T_SUPER_TEMPLATE_PATH}/forum_fn.js"></script>
+<!-- IF S_CALENDAR_RSVPS -->
+<script src="{T_SUPER_TEMPLATE_PATH}/sorttable.js"></script>
+<!-- ENDIF -->
+<link href="{T_THEME_PATH}/print.css" rel="stylesheet" type="text/css" media="print" title="printonly" />
+<link href="{T_STYLESHEET_LINK}" rel="stylesheet" type="text/css" media="screen, projection" />
+
+<link href="{T_THEME_PATH}/normal.css" rel="stylesheet" type="text/css" title="A" />
+<link href="{T_THEME_PATH}/medium.css" rel="alternate stylesheet" type="text/css" title="A+" />
+<link href="{T_THEME_PATH}/large.css" rel="alternate stylesheet" type="text/css" title="A++" />
+<link rel="stylesheet" href="/css/menu.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="/css/home.css" type="text/css" media="screen" />
+
+<!-- IF S_CONTENT_DIRECTION eq 'rtl' -->
+	<link href="{T_THEME_PATH}/bidi.css" rel="stylesheet" type="text/css" media="screen, projection" />
+<!-- ENDIF -->
+<!-- Breizh Shoutbox Start -->
+<!-- IF S_DISPLAY_SHOUTBOX -->
+<script type="text/javascript" src="{T_SUPER_TEMPLATE_PATH}/editor.js"></script>
+<script type="text/javascript" src="{T_SUPER_TEMPLATE_PATH}/shoutbox.js"></script>
+<script type="text/javascript" src="{U_SHOUT}"></script>
+<!-- IF U_CHARS -->
+<script type="text/javascript" src="{U_CHARS}"></script>
+<!-- ENDIF -->
+<!-- ENDIF -->
+<!-- Breizh Shoutbox End -->
+    <link rel="stylesheet" href="./highslide/highslide.css" type="text/css" />
+    <script type="text/javascript" src="./highslide/highslide-with-gallery.js"></script>
+</head>
+
+<body style="background:#111;padding:0;margin:0">
+<div style="position:absolute;	width:100%;	height: 139px;	background-image: url(/img/topbanner2.png); background-repeat: repeat-x;z-index:5;m">
+<div id="content" style="margin:auto;z-index:10;position:relative; width:1050px;	height: 139px;	background-image: url(/img/topbanner.png); background-repeat:no-repeat">
+<div style="position:absolute;margin-left:165px;width:900px;height: 30px;	margin-top:80px; z-index:10">
+<div id='cssmenu'>
+<ul>
+   <li><a href='/index.html'><span>Accueil</span></a></li>
+   <li><a href='/2nd-FFS_Qui_sommes_nous.html'><span>Qui sommes-nous</span></a></li>
+   <li class='has-sub '><a href='#'><span>Nos escadrons</span></a>
+      <ul>
+         <li class='has-sub '><a href='/FC3_Escadron_F15_Eagles.html'><span>F15 - FFS 02 Eagles</span></a>
+         </li>
+         <li class='has-sub '><a href='/DCS_Escadron_A10C_Avengers.html'><span>A10C - FFS 03 Avengers</span></a>
+         </li>
+		 <li class='has-sub '><a href='/FC3_Escadron_SU27_Kingfish.html'><span>SU33 - FFS 04 Kingfish</span></a>
+         </li>
+		 <li class='has-sub '><a href='/FC3_Escadron_Mig29_Whitetigers.html'><span>Mig29 - FFS 05 White tigers</span></a>
+         </li>
+      </ul>
+   </li>
+   <li><a href='/2nd-FFS_les_operations.html'><span>Les operations</span></a></li>
+   <li><a href='/forum'><span>Forum</span></a></li>
+   <li><a href='#'><span>Videos</span></a></li>
+   <li><a href='/2nd-FFS_Rejoignez_nous.html'><span>Rejoignez-nous</span></a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<!-- IF not S_IS_BOT and not S_CAN_SYNC and not KILL_LATERAL and (ACTIVE_PANEL and not S_DISPLAY_SHOUTBOX) or (S_DISPLAY_SHOUTBOX and PANEL_ALL) -->
+<script type="text/javascript">
+// <![CDATA[
+	function chargeShout(el1,el2,el3){
+		var e_object=document.getElementById('box'),liBloc=document.getElementById('dtbox3');
+		document.getElementById(el1).style.display='block';document.getElementById(el2).style.display='none';
+		if(el3!=false){e_object.style.display=liBloc.style.display='block';
+		}else{e_object.style.display=liBloc.style.display='none';}
+	}
+// ]]>
+</script>
+<div style="position:fixed;bottom:15px;left:0px;background-color:transparent;float:left;z-index:1000;">
+	<ul style="margin:0px;padding:0;">
+		<li id="dtbox1" style="display:block;margin:0px;padding:0;cursor:pointer;list-style-type:none;" title="{L_SHOUT_POP}">
+			<a href="javascript:void(0);" onclick="chargeShout('dtbox2','dtbox1',true);">
+			<img src="{PANEL_OPEN}" alt="{L_SHOUT_POP}" title="{L_SHOUT_POP}" /></a>
+		</li>
+		<li id="dtbox3" style="display:none;margin:0px;padding:0;list-style-type:none;">
+			<object id="box" data="{U_SHOUTBOX}" type="text/html" width="{PANEL_WIDTH}" height="{PANEL_HEIGHT}" style="display:none;background:transparent;border:0 none;overflow-y:hidden;"></object>
+		</li>
+	</ul>
+	<ul style="margin:3px 0 0;padding:0;float:left;">
+		<li id="dtbox2" style="display:none;margin:0px;padding:0;cursor:pointer;list-style-type:none;" title="{L_CLOSE_WINDOW}">
+			<a href="javascript:void(0);" onclick="chargeShout('dtbox1','dtbox2',false);">
+			<img src="{PANEL_CLOSE}" alt="{L_CLOSE_WINDOW}" title="{L_CLOSE_WINDOW}" /></a>
+		</li>
+	</ul>
+</div>
+<!-- ENDIF -->
+<div style="top:140px; width:1400px; margin:auto; position:relative;">
+<div id="wrap" style="top:0px;width:1050px; margin:auto; padding:10px; background: white; position:relative; border:1px solid black; z-index:1; box-shadow: 1px 1px 12px #555; float:left;">
+	<a id="top" name="top" accesskey="t"></a>
+	<div id="page-header">
+		<div class="navbar">
+			<div class="inner"><span class="corners-top"><span></span></span>
+
+			<ul class="linklist navlinks">
+				<li class="icon-home"><a href="{U_INDEX}" accesskey="h">{L_INDEX}</a> <!-- BEGIN navlinks --> <strong>&#8249;</strong> <a href="{navlinks.U_VIEW_FORUM}">{navlinks.FORUM_NAME}</a><!-- END navlinks --></li>
+<!-- IF S_DISPLAY_SEARCH and not S_IN_SEARCH -->
+				<li class="rightside"><a href="{U_SEARCH}" title="{L_SEARCH_ADV_EXPLAIN}">{L_SEARCH_ADV}</a> {S_SEARCH_HIDDEN_FIELDS}</li>
+<!-- ENDIF -->
+				<!-- IF U_EMAIL_TOPIC --><li class="rightside"><a href="{U_EMAIL_TOPIC}" title="{L_EMAIL_TOPIC}" class="sendemail">{L_EMAIL_TOPIC}</a></li><!-- ENDIF -->
+				<!-- IF U_EMAIL_PM --><li class="rightside"><a href="{U_EMAIL_PM}" title="{L_EMAIL_PM}" class="sendemail">{L_EMAIL_PM}</a></li><!-- ENDIF -->
+				<!-- IF U_PRINT_TOPIC --><li class="rightside"><a href="{U_PRINT_TOPIC}" title="{L_PRINT_TOPIC}" accesskey="p" class="print">{L_PRINT_TOPIC}</a></li><!-- ENDIF -->
+				<!-- IF U_PRINT_PM --><li class="rightside"><a href="{U_PRINT_PM}" title="{L_PRINT_PM}" accesskey="p" class="print">{L_PRINT_PM}</a></li><!-- ENDIF -->
+			</ul>
+
+			<!-- IF not S_IS_BOT and S_USER_LOGGED_IN -->
+			<ul class="linklist leftside">
+				<li class="icon-ucp">
+					<a href="{U_PROFILE}" title="{L_PROFILE}" accesskey="e">{L_PROFILE}</a>
+						<!-- IF S_DISPLAY_PM --> (<a href="{U_PRIVATEMSGS}">{PRIVATE_MESSAGE_INFO}</a>)<!-- ENDIF -->
+					<!-- IF S_DISPLAY_SEARCH --> &bull;
+					<a href="{U_SEARCH_SELF}">{L_SEARCH_SELF}</a>
+					<!-- ENDIF -->
+					<!-- IF U_RESTORE_PERMISSIONS --> &bull;
+					<a href="{U_RESTORE_PERMISSIONS}">{L_RESTORE_PERMISSIONS}</a>
+					<!-- ENDIF -->
+				</li>
+			</ul>
+			<!-- ENDIF -->
+
+			<ul class="linklist rightside">
+				<!-- IF not S_IS_BOT -->
+				<li class="icon-pages"><a href="{U_CALENDAR}">{L_CALENDAR}</a></li>
+					<!-- IF S_DISPLAY_MEMBERLIST --><li class="icon-members"><a href="{U_MEMBERLIST}" title="{L_MEMBERLIST_EXPLAIN}">{L_MEMBERLIST}</a></li><!-- ENDIF -->
+					<!-- IF not S_USER_LOGGED_IN and S_REGISTER_ENABLED and not (S_SHOW_COPPA or S_REGISTRATION) --><li class="icon-register"><a href="{U_REGISTER}">{L_REGISTER}</a></li><!-- ENDIF -->
+					<li class="icon-logout"><a href="{U_LOGIN_LOGOUT}" title="{L_LOGIN_LOGOUT}" accesskey="x">{L_LOGIN_LOGOUT}</a></li>
+				<!-- ENDIF -->
+			</ul>
+
+			<span class="corners-bottom"><span></span></span></div>
+		</div>
+
+	</div>
+	<a name="start_here"></a>
+	<div id="page-body">
+		<!-- IF S_BOARD_DISABLED and S_USER_LOGGED_IN and (U_MCP or U_ACP) -->
+		<div id="information" class="rules">
+			<div class="inner"><span class="corners-top"><span></span></span>
+				<strong>{L_INFORMATION}:</strong> {L_BOARD_DISABLED}
+			<span class="corners-bottom"><span></span></span></div>
+		</div>
+		<!-- ENDIF -->
