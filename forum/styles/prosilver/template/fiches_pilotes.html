@@ -1,0 +1,33 @@
+<!-- INCLUDE overall_header.html -->
+
+<div style="position:relative; color:black; height:700px; margin:auto; background-color:#cadceb; z-index:10">
+    <div style="position:relative; margin:auto; text-align:center; color:black; width:400px;">
+		<h1 style="margin:auto; color:black; font-size:3em;">Fiches Pilotes</h1>
+	</div>
+	<div style="clear:both"></div>
+    
+    <div style="background-color:white; position:relative; width:500px; float:left; top:5px; border: 1px solid black; margin-left:15px;">
+            <p>
+                <h3 style="text-align:center; font-size:1.5em">Fiche du pilote</h3>
+                    
+                <!-- BEGIN fiche_pilote -->
+                <span style="margin-left:10px; position:relative; left:20px; top:10px; display:block; width:90%">
+                    <form action="fiches_pilotes.php" method="post">
+                        <li>Nombre d'heures de vol (hh:mm:ss) : <input name="Nb_heure_vol" type="text" size="8" maxlenght="8" value="{fiche_pilote.HEURE_VOL}"></li>
+                        <li>Dont de nuit : <input name="Vol_nuit" type="text" size="8" maxlenght="8" value="{fiche_pilote.DONT_VOL_NUIT}"></li>
+                        <li>Nombre d'atterissages : <input name="Nb_Landing" type="text" size="4" maxlenght="4"  value="{fiche_pilote.LANDINGS}"></li>
+                        <li>Dont de nuit: <input name="Landing_nuit" type="text" size="4" maxlenght="4" value="{fiche_pilote.DONT_LDNG_NUIT}"></li>
+                        <input type="submit"    value="save" />
+                    </form>
+                </span>    
+                <!-- END fiche_pilote -->
+            </p>
+    </div>
+    
+
+</div>
+
+<!-- INCLUDE overall_footer.html -->    
+	
+	
+	

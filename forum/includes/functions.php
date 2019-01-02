@@ -4383,6 +4383,272 @@ function page_header($page_title = '', $display_online_list = false, $item_id = 
 			$template->assign_block_vars('notifications', $notification->prepare_for_display());
 		}
 	}
+        
+        
+        
+        //Récupération infos Pilotes
+		$FFS = 12;
+		$sql = "SELECT COUNT(*) AS compte FROM modules WHERE FFS = $FFS AND sub <> 0 ORDER BY lvl ASC, sub ASC";
+		$result = $db->sql_query($sql);
+		$data = $db->sql_fetchrow($result);
+		$nbr_total_module = $data['compte'];
+		
+		$sql_pilote = "SELECT * FROM pilotes WHERE (ffs = $FFS OR ffs2 = $FFS OR ffs3 = $FFS) ORDER BY leader DESC";
+		$results_pilote = $db->sql_query($sql_pilote);
+		
+		$affec = 0;
+		while($data_pilote = $db->sql_fetchrow($results_pilote))
+		{
+			//On prend un pilote
+			$nbr_valid = 0;
+			$nbr_wip = 0;
+			$largeur_valid = 0;
+			$largeur_wip = 0;
+			$pilote = $data_pilote['pseudo'];
+			$id_pilote = $data_pilote['id_forum'];
+			$id = $data_pilote['id'];
+			$sql = "SELECT COUNT(*) as compte FROM validation_modules WHERE id_pilote = $id AND ffs = $FFS AND status = 'valid'";
+			$result = $db->sql_query($sql);
+			$data = $db->sql_fetchrow($result);
+			$nbr_valid = $data['compte'];
+			$sql = "SELECT COUNT(*) as compte FROM validation_modules WHERE id_pilote = $id AND ffs = $FFS AND status = 'wip'";
+			$result = $db->sql_query($sql);
+			$data = $db->sql_fetchrow($result);
+			$nbr_wip = $data['compte'];
+			$largeur_valid = round($nbr_valid/$nbr_total_module * 100);
+			$largeur_wip = round($nbr_wip/$nbr_total_module * 100);
+			$progression = round($largeur_valid + $largeur_wip * 0.5,1);
+			$largeur_no = 100 - $largeur_valid - $largeur_wip;
+			$template->assign_block_vars('pilote_ffs12', array(
+				'PSEUDO' => $pilote,
+				'ID_FORUM' => $id_pilote,
+				'LARGEUR_VALID' => $largeur_valid,
+				'LARGEUR_WIP' => $largeur_wip,
+				'LARGEUR_NO' => $largeur_no,
+				'PROGRESSION' => $progression
+			));
+                        
+		}
+	
+		/*$FFS = 2;
+		$sql = "SELECT COUNT(*) AS compte FROM modules WHERE FFS = $FFS AND sub <> 0 ORDER BY lvl ASC, sub ASC";
+		$result = $db->sql_query($sql);
+		$data = $db->sql_fetchrow($result);
+		$nbr_total_module = $data['compte'];
+		
+		$sql_pilote = "SELECT * FROM pilotes WHERE (ffs = $FFS OR ffs2 = $FFS OR ffs3 = $FFS) ORDER BY leader DESC";
+		$results_pilote = $db->sql_query($sql_pilote);
+		
+		$affec = 0;
+		while($data_pilote = $db->sql_fetchrow($results_pilote))
+		{
+			//On prend un pilote
+			$nbr_valid = 0;
+			$nbr_wip = 0;
+			$largeur_valid = 0;
+			$largeur_wip = 0;
+			$pilote = $data_pilote['pseudo'];
+			$id_pilote = $data_pilote['id_forum'];
+			$id = $data_pilote['id'];
+			$sql = "SELECT COUNT(*) as compte FROM validation_modules WHERE id_pilote = $id AND ffs = $FFS AND status = 'valid'";
+			$result = $db->sql_query($sql);
+			$data = $db->sql_fetchrow($result);
+			$nbr_valid = $data['compte'];
+			$sql = "SELECT COUNT(*) as compte FROM validation_modules WHERE id_pilote = $id AND ffs = $FFS AND status = 'wip'";
+			$result = $db->sql_query($sql);
+			$data = $db->sql_fetchrow($result);
+			$nbr_wip = $data['compte'];
+			$largeur_valid = round($nbr_valid/$nbr_total_module * 100);
+			$largeur_wip = round($nbr_wip/$nbr_total_module * 100);
+			$progression = round($largeur_valid + $largeur_wip * 0.5,1);
+			$largeur_no = 100 - $largeur_valid - $largeur_wip;
+			
+			$template->assign_block_vars('pilote_ffs2', array(
+				'PSEUDO' => $pilote,
+				'ID_FORUM' => $id_pilote,
+				'LARGEUR_VALID' => $largeur_valid,
+				'LARGEUR_WIP' => $largeur_wip,
+				'LARGEUR_NO' => $largeur_no,
+				'PROGRESSION' => $progression
+			));
+		}*/
+	
+	
+		$FFS = 3;
+		$sql = "SELECT COUNT(*) AS compte FROM modules WHERE FFS = $FFS AND sub <> 0 ORDER BY lvl ASC, sub ASC";
+		$result = $db->sql_query($sql);
+		$data = $db->sql_fetchrow($result);
+		$nbr_total_module = $data['compte'];
+		
+		$sql_pilote = "SELECT * FROM pilotes WHERE (ffs = $FFS OR ffs2 = $FFS OR ffs3 = $FFS) ORDER BY leader DESC";
+		$results_pilote = $db->sql_query($sql_pilote);
+		
+		$affec = 0;
+		while($data_pilote = $db->sql_fetchrow($results_pilote))
+		{
+			//On prend un pilote
+			$nbr_valid = 0;
+			$nbr_wip = 0;
+			$largeur_valid = 0;
+			$largeur_wip = 0;
+			$pilote = $data_pilote['pseudo'];
+			$id_pilote = $data_pilote['id_forum'];
+			$id = $data_pilote['id'];
+			$sql = "SELECT COUNT(*) as compte FROM validation_modules WHERE id_pilote = $id AND ffs = $FFS AND status = 'valid'";
+			$result = $db->sql_query($sql);
+			$data = $db->sql_fetchrow($result);
+			$nbr_valid = $data['compte'];
+			$sql = "SELECT COUNT(*) as compte FROM validation_modules WHERE id_pilote = $id AND ffs = $FFS AND status = 'wip'";
+			$result = $db->sql_query($sql);
+			$data = $db->sql_fetchrow($result);
+			$nbr_wip = $data['compte'];
+			$largeur_valid = round($nbr_valid/$nbr_total_module * 100);
+			$largeur_wip = round($nbr_wip/$nbr_total_module * 100);
+			$progression = round($largeur_valid + $largeur_wip * 0.5,1);
+			$largeur_no = 100 - $largeur_valid - $largeur_wip;
+			
+			$template->assign_block_vars('pilote_ffs3', array(
+				'PSEUDO' => $pilote,
+				'ID_FORUM' => $id_pilote,
+				'LARGEUR_VALID' => $largeur_valid,
+				'LARGEUR_WIP' => $largeur_wip,
+				'LARGEUR_NO' => $largeur_no,
+				'PROGRESSION' => $progression
+			));
+		}
+                
+                
+		
+		/*$FFS = 4;
+		$sql = "SELECT COUNT(*) AS compte FROM modules WHERE FFS = $FFS AND sub <> 0 ORDER BY lvl ASC, sub ASC";
+		$result = $db->sql_query($sql);
+		$data = $db->sql_fetchrow($result);
+		$nbr_total_module = $data['compte'];
+		
+		$sql_pilote = "SELECT * FROM pilotes WHERE (ffs = $FFS OR ffs2 = $FFS OR ffs3 = $FFS) ORDER BY leader DESC";
+		$results_pilote = $db->sql_query($sql_pilote);
+		
+		$affec = 0;
+		while($data_pilote = $db->sql_fetchrow($results_pilote))
+		{
+			//On prend un pilote
+			$nbr_valid = 0;
+			$nbr_wip = 0;
+			$largeur_valid = 0;
+			$largeur_wip = 0;
+			$pilote = $data_pilote['pseudo'];
+			$id_pilote = $data_pilote['id_forum'];
+			$id = $data_pilote['id'];
+			$sql = "SELECT COUNT(*) as compte FROM validation_modules WHERE id_pilote = $id AND ffs = $FFS AND status = 'valid'";
+			$result = $db->sql_query($sql);
+			$data = $db->sql_fetchrow($result);
+			$nbr_valid = $data['compte'];
+			$sql = "SELECT COUNT(*) as compte FROM validation_modules WHERE id_pilote = $id AND ffs = $FFS AND status = 'wip'";
+			$result = $db->sql_query($sql);
+			$data = $db->sql_fetchrow($result);
+			$nbr_wip = $data['compte'];
+			$largeur_valid = round($nbr_valid/$nbr_total_module * 100);
+			$largeur_wip = round($nbr_wip/$nbr_total_module * 100);
+			$progression = round($largeur_valid + $largeur_wip * 0.5,1);
+			$largeur_no = 100 - $largeur_valid - $largeur_wip;
+			
+			$template->assign_block_vars('pilote_ffs4', array(
+				'PSEUDO' => $pilote,
+				'ID_FORUM' => $id_pilote,
+				'LARGEUR_VALID' => $largeur_valid,
+				'LARGEUR_WIP' => $largeur_wip,
+				'LARGEUR_NO' => $largeur_no,
+				'PROGRESSION' => $progression
+			));
+		}*/
+		
+		$FFS = 6;
+		$sql = "SELECT COUNT(*) AS compte FROM modules WHERE FFS = $FFS AND sub <> 0 ORDER BY lvl ASC, sub ASC";
+		$result = $db->sql_query($sql);
+		$data = $db->sql_fetchrow($result);
+		$nbr_total_module = $data['compte'];
+		
+		$sql_pilote = "SELECT * FROM pilotes WHERE (ffs = $FFS OR ffs2 = $FFS OR ffs3 = $FFS) ORDER BY leader DESC";
+		$results_pilote = $db->sql_query($sql_pilote);
+		
+		$affec = 0;
+		while($data_pilote = $db->sql_fetchrow($results_pilote))
+		{
+			//On prend un pilote
+			$nbr_valid = 0;
+			$nbr_wip = 0;
+			$largeur_valid = 0;
+			$largeur_wip = 0;
+			$pilote = $data_pilote['pseudo'];
+			$id_pilote = $data_pilote['id_forum'];
+			$id = $data_pilote['id'];
+			$sql = "SELECT COUNT(*) as compte FROM validation_modules WHERE id_pilote = $id AND ffs = $FFS AND status = 'valid'";
+			$result = $db->sql_query($sql);
+			$data = $db->sql_fetchrow($result);
+			$nbr_valid = $data['compte'];
+			$sql = "SELECT COUNT(*) as compte FROM validation_modules WHERE id_pilote = $id AND ffs = $FFS AND status = 'wip'";
+			$result = $db->sql_query($sql);
+			$data = $db->sql_fetchrow($result);
+			$nbr_wip = $data['compte'];
+			$largeur_valid = round($nbr_valid/$nbr_total_module * 100);
+			$largeur_wip = round($nbr_wip/$nbr_total_module * 100);
+			$progression = round($largeur_valid + $largeur_wip * 0.5,1);
+			$largeur_no = 100 - $largeur_valid - $largeur_wip;
+			
+			$template->assign_block_vars('pilote_ffs6', array(
+				'PSEUDO' => $pilote,
+				'ID_FORUM' => $id_pilote,
+				'LARGEUR_VALID' => $largeur_valid,
+				'LARGEUR_WIP' => $largeur_wip,
+				'LARGEUR_NO' => $largeur_no,
+				'PROGRESSION' => $progression
+			));
+		}
+
+		$FFS = 16;
+		$sql = "SELECT COUNT(*) AS compte FROM modules WHERE FFS = $FFS AND sub <> 0 ORDER BY lvl ASC, sub ASC";
+		$result = $db->sql_query($sql);
+		$data = $db->sql_fetchrow($result);
+		$nbr_total_module = $data['compte'];
+		
+		$sql_pilote = "SELECT * FROM pilotes WHERE (ffs = $FFS OR ffs2 = $FFS OR ffs3 = $FFS) ORDER BY leader DESC";
+		$results_pilote = $db->sql_query($sql_pilote);
+		
+		$affec = 0;
+		while($data_pilote = $db->sql_fetchrow($results_pilote))
+		{
+			//On prend un pilote
+			$nbr_valid = 0;
+			$nbr_wip = 0;
+			$largeur_valid = 0;
+			$largeur_wip = 0;
+			$pilote = $data_pilote['pseudo'];
+			$id_pilote = $data_pilote['id_forum'];
+			$id = $data_pilote['id'];
+			$sql = "SELECT COUNT(*) as compte FROM validation_modules WHERE id_pilote = $id AND ffs = $FFS AND status = 'valid'";
+			$result = $db->sql_query($sql);
+			$data = $db->sql_fetchrow($result);
+			$nbr_valid = $data['compte'];
+			$sql = "SELECT COUNT(*) as compte FROM validation_modules WHERE id_pilote = $id AND ffs = $FFS AND status = 'wip'";
+			$result = $db->sql_query($sql);
+			$data = $db->sql_fetchrow($result);
+			$nbr_wip = $data['compte'];
+			$largeur_valid = round($nbr_valid/$nbr_total_module * 100);
+			$largeur_wip = round($nbr_wip/$nbr_total_module * 100);
+			$progression = round($largeur_valid + $largeur_wip * 0.5,1);
+			$largeur_no = 100 - $largeur_valid - $largeur_wip;
+			
+			$template->assign_block_vars('pilote_ffs16', array(
+				'PSEUDO' => $pilote,
+				'ID_FORUM' => $id_pilote,
+				'LARGEUR_VALID' => $largeur_valid,
+				'LARGEUR_WIP' => $largeur_wip,
+				'LARGEUR_NO' => $largeur_no,
+				'PROGRESSION' => $progression
+			));
+		}
+                
+                
 
 	/** @var \phpbb\controller\helper $controller_helper */
 	$controller_helper = $phpbb_container->get('controller.helper');

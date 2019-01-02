@@ -10,7 +10,7 @@
     $user->session_begin();
     $auth->acl($user->data);
     $user->setup();
-	
+$request->enable_super_globals();	
 	if(!empty($_GET['id']))
 	{
 		$redirect = false;
@@ -568,4 +568,5 @@
 
     make_jumpbox(append_sid("{$phpbb_root_path}viewforum.$phpEx"));
     page_footer();
+    $request->disable_super_globals();
 ?>

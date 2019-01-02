@@ -1,0 +1,294 @@
+<!-- INCLUDE overall_header.html -->
+<!-- IF REDIRECT -->
+	<SCRIPT LANGUAGE="JavaScript">
+		 document.location.href="/forum/fiche_pilote.php?id={ID_FORUM}"
+	</SCRIPT>
+<!-- ENDIF -->
+<div style="position:relative; color:black; min-height:700px; margin:auto; background-color:#cadceb; z-index:10">
+	<div style="position:relative; margin:auto; text-align:center; color:black;">
+	<br />
+		<a href="/forum/module_training.php?FFS=0{FFS}">Retour au module</a>
+	</div>
+	<div style="clear:both"></div>
+	<div style="margin:auto; margin-top:20px; padding-left:15px; padding-right:15px;">
+		<div style="position:relative; float:left; width:550px;">
+			<div style="background-color:white; min-height:200px; border:1px solid black; margin-bottom:15px; padding:5px;">
+				<div style="position:relative; float:left; width:130px; text-align:center;">
+					<img width="128" alt="Avatar de l’utilisateur" src="./download/file.php?avatar={AVATAR}"></img><br/>
+					{RANK_TITLE}<br />
+					<img title="{RANK_TITLE}" alt="{RANK_TITLE}" src="./images/ranks/{RANK_IMAGE}"></img>
+					<!-- IF S_DISPLAY_MEDALS --><!-- IF S_DISPLAY_VAD_QUALIF --><img style="border-left: 1px solid black; border-right: 1px solid black;" src="/img/medals/VAD_QUALIF.png" /><!-- ENDIF --><!-- ENDIF -->
+				</div>
+				<!-- IF FFS == 12 -->
+				<div style="position:relative; float:left; width:300px; margin-left:30px; padding-top:10px;"><span style="font-weight:bold; color:#330099; font-size:1.4em;">{PSEUDO} - FFS 1/2</span><br /><br />
+				<!-- ELSE -->
+				<div style="position:relative; float:left; width:300px; margin-left:30px; padding-top:10px;"><span style="font-weight:bold; color:#330099; font-size:1.4em;">{PSEUDO} - FFS 0{FFS}</span><br /><br />
+				<!-- ENDIF -->
+					<table>
+						<tr><td style="color:rgb(17, 80, 152); font-weight:bold;">Nombre total de vols</td><td> : </td><td><b>{NBR_VOL_TOTAL}</b></td>
+						<tr><td><b>Nombre de trainings</b></td><td> : </td><td>{NBR_VOL_TRAIN}</td></tr>
+						<tr><td><b>Nombre de missions</b></td><td> : </td><td>{NBR_VOL_MISSION}</td></tr>
+						<tr><td><b>&nbsp;</b></td><td> &nbsp; </td><td>&nbsp;</td></tr>
+						<tr><td style="color:rgb(17, 80, 152); font-weight:bold;">Nombre total d'heures de vol</td><td>:</td><td><b>{TPS_TOTAL}</b></td></tr>
+						<tr><td><b>Nombre d'heures de vol en mission</b></td><td> : </td><td>{TPS_MISSION}</td></tr>
+						<tr><td><b>Nombre d'heures de vol en training</b></td><td> : </td><td>{TPS_TRAIN}</td></tr>
+					</table>
+				</div>
+			</div>
+			<div style="background-color:white; min-height:250px; border:1px solid black; margin-bottom:15px;">
+			<ul class="bxslider">
+				<li><p>
+					<h3 style="text-align:center; font-size:1.5em">
+					<!-- IF FFS == 6 -->
+						Programme de formation de la FFS-06 - Hélicoptères
+					<!-- ELSEIF FFS == 16 -->
+						Programme de formation de la FFS-06 - UH-1H / Mi-8 (CURSUS EVAC)
+					<!-- ELSEIF FFS == 12 -->
+						Programme de formation de la FFS 1/2 Cigognes
+					<!-- ELSEIF FFS == 131 -->
+						Programme de formation de la FFS-131
+					<!-- ELSE -->
+						Programme de formation de la FFS-0{FFS}
+					<!-- ENDIF -->
+					</h3>
+					<!-- BEGIN module -->
+						<!-- IF module.SUB > 0 -->
+							<tr>
+							<!-- IF DISPLAY_ADMIN -->
+							<td><a href="/forum/fiche_pilote.php?id={ID_FORUM}&id_module={module.ID_MODULE}&mode=valid&ffs={FFS}"><img width=16 src="/forum/images/valid.png" title="Valider le module" /></a> <a href="/forum/fiche_pilote.php?id={ID_FORUM}&id_module={module.ID_MODULE}&mode=wip&ffs={FFS}"><img width=16 src="/forum/images/wip.png" title="Module en progression" /></a> <a href="/forum/fiche_pilote.php?id={ID_FORUM}&id_module={module.ID_MODULE}&mode=no&ffs={FFS}"><img width=16 src="/forum/images/no.png" title="Module non validé" /></a></td>
+							<!-- ENDIF -->
+							<td style="position:relative; left:20px; display:block;"><li><span style="color:#{module.STATUS}">{module.LVL}.{module.SUB} : {module.NOM}</span> </li>
+						<!-- ELSE -->
+							<!-- IF module.NOT_FIRST --></ul></table><!-- ENDIF -->
+							<br /><span style="margin-left:60px; font-size:1.1em; font-weight:bold;">Module {module.LVL} : {module.NOM}</span><br />
+							<table  style="position:relative; left:50px;">
+								<ul style="margin-left:40px;">
+						<!-- ENDIF -->
+					<!-- END module -->
+					</ul></table>
+				</p></li>
+				<!-- IF FFS2 != 0 -->
+				<li><p>
+					<h3 style="text-align:center; font-size:1.5em">
+					<!-- IF FFS2 == 6 -->
+						Programme de formation de la FFS-06 - Ka-50 (CURSUS EVAC)
+					<!-- ELSEIF FFS2 == 16 -->
+						Programme de formation de la FFS-06 - UH-1H / Mi-8(CURSUS EVAC)
+					<!-- ELSEIF FFS2 == 12 -->
+						Programme de formation de la FFS 1/2 Cigognes
+					<!-- ELSEIF FFS == 131 -->
+						Programme de formation de la FFS-131
+					<!-- ELSE -->
+						Programme de formation de la FFS-0{FFS2}
+					<!-- ENDIF -->
+					</h3>
+					<!-- BEGIN module2 -->
+						<!-- IF module2.SUB -->
+							<tr>
+							<!-- IF DISPLAY_ADMIN -->
+							<td><a href="/forum/fiche_pilote.php?id={ID_FORUM}&id_module={module2.ID_MODULE}&mode=valid&ffs={FFS2}"><img width=16 src="/forum/images/valid.png" title="Valider le module" /></a> <a href="/forum/fiche_pilote.php?id={ID_FORUM}&id_module={module2.ID_MODULE}&mode=wip&ffs={FFS2}"><img width=16 src="/forum/images/wip.png" title="Module en progression" /></a> <a href="/forum/fiche_pilote.php?id={ID_FORUM}&id_module={module2.ID_MODULE}&mode=no&ffs={FFS2}"><img width=16 src="/forum/images/no.png" title="Module non validé" /></a></td>
+							<!-- ENDIF -->
+							<td style="position:relative; left:20px; display:block;"><li><span style="color:#{module2.STATUS}">{module2.LVL}.{module2.SUB} : {module2.NOM}</span> </li>
+						<!-- ELSE -->
+							<!-- IF module2.NOT_FIRST --></ul></table><!-- ENDIF -->
+							<br /><span style="margin-left:60px; font-size:1.1em; font-weight:bold;">Module {module2.LVL} : {module2.NOM}</span><br />
+							<table  style="position:relative; left:50px;">
+								<ul style="margin-left:40px;">
+						<!-- ENDIF -->
+					<!-- END module2 -->
+					</ul></table>
+				</p></li>
+				<!-- ENDIF -->
+				<!-- IF FFS3 != 0 -->
+				<li><p>
+					<h3 style="text-align:center; font-size:1.5em">
+					<!-- IF FFS3 == 6 -->
+						Programme de formation de la FFS-06 - Ka-50 (CURSUS EVAC)
+					<!-- ELSEIF FFS3 == 16 -->
+						Programme de formation de la FFS-06 - UH-1H / Mi-8 (CURSUS EVAC)
+					<!-- ELSEIF FFS3 == 12 -->
+						Programme de formation de la FFS 1/2 Cigognes
+					<!-- ELSEIF FFS == 131 -->
+						Programme de formation de la FFS-131
+					<!-- ELSE -->
+						Programme de formation de la FFS-0{FFS3}
+					<!-- ENDIF -->
+					</h3>
+					<!-- BEGIN module3 -->
+						<!-- IF module3.SUB -->
+							<tr>
+							<!-- IF DISPLAY_ADMIN -->
+							<td><a href="/forum/fiche_pilote.php?id={ID_FORUM}&id_module={module3.ID_MODULE}&mode=valid&ffs={FFS3}"><img width=16 src="/forum/images/valid.png" title="Valider le module" /></a> <a href="/forum/fiche_pilote.php?id={ID_FORUM}&id_module={module3.ID_MODULE}&mode=wip&ffs={FFS3}"><img width=16 src="/forum/images/wip.png" title="Module en progression" /></a> <a href="/forum/fiche_pilote.php?id={ID_FORUM}&id_module={module3.ID_MODULE}&mode=no&ffs={FFS3}"><img width=16 src="/forum/images/no.png" title="Module non validé" /></a></td>
+							<!-- ENDIF -->
+							<td style="position:relative; left:20px; display:block;"><li><span style="color:#{module3.STATUS}">{module3.LVL}.{module3.SUB} : {module3.NOM}</span> </li>
+						<!-- ELSE -->
+							<!-- IF module3.NOT_FIRST --></ul></table><!-- ENDIF -->
+							<br /><span style="margin-left:60px; font-size:1.1em; font-weight:bold;">Module {module3.LVL} : {module3.NOM}</span><br />
+							<table  style="position:relative; left:50px;">
+								<ul style="margin-left:40px;">
+						<!-- ENDIF -->
+					<!-- END module3 -->
+					</ul></table>
+				</p></li>
+				<!-- ENDIF -->
+			</ul>
+			</div>
+		</div>
+		<!-- IF DISPLAY_PAGE -->
+		<div style="position:relative; float:right; width:500px;">
+			<!-- IF COUNT_VOL == 0 -->
+				<div style="background-color:white; text-align:center; padding-top:10px; font-weight:bold; font-size:1.8em; min-height:40px; border:1px solid black; margin-bottom:15px;">
+					Aucun vol enregistré
+				</div>
+			<!-- ELSE -->
+				<!-- IF INSTRUCT_COMMENT -->
+					<div style="background-color:white; min-height:150px; border:1px solid black; margin-bottom:15px;">
+						<form action="/forum/fiche_pilote.php?id={ID_FORUM}" method="POST">
+							<div style="text-align:center; margin:10px;">
+								<span style="color:rgb(17, 80, 152); font-weight:bold">Commentaire :</span><textarea name="avis_instruct" style="width: 400px; height: 80px;" rows=5 cols=50 id="avis_instruct">{PREVIOUS_COMMENT}</textarea>
+								<input type="hidden" name="id_fiche" id="id_fiche" value={ID_FICHE} />
+								<input type="submit" value="Enregistrer" /><input type="reset" value="Annuler" />
+							</div>
+						</form>
+					</div>
+				<!-- ENDIF -->
+				
+				<!-- IF EDIT_FICHE -->
+				<div style="background-color:white; min-height:150px; border:1px solid black; margin-bottom:15px;">
+				<div>
+					<h3 style="display: block; margin: auto; text-align: center; padding: 5px;">
+						Editer un vol
+					</h3>
+					<form action="/forum/fiche_pilote.php?id={ID_FORUM}" method="post">
+						<table>
+							<tr><td style="color:rgb(17, 80, 152); font-weight:bold">Type :</td><td>
+								<select name="type" id="type">
+									<option value="training" <!-- IF EDIT_TYPE == "training" --> selected <!-- ENDIF -->>Training</option>
+									<option value="mission" <!-- IF EDIT_TYPE == "mission" --> selected <!-- ENDIF -->>Mission</option>
+								</select>
+							</td></tr>
+							<tr><td style="color:rgb(17, 80, 152); font-weight:bold">Titre :</td><td><input type="text" name="titre" id="titre" value="{EDIT_TITRE}" /></td></tr>
+							<tr><td style="color:rgb(17, 80, 152); font-weight:bold">Date :</td><td><input type="text" maxlength="2" name="day" id="day" size=2 value="{EDIT_DAY}" /> / <input type="text" maxlength="2" name="month" size=2 id="month" value="{EDIT_MONTH}" /> / <input type="text" maxlength="4" name="year" size=4 id="year" value="{EDIT_YEAR}" /></td></tr>
+							<tr><td style="color:rgb(17, 80, 152); font-weight:bold">Tps de vol :</td><td><input type="text" maxlength="2" name="heure" id="heure" size=2 value="{EDIT_HEURE}" /> : <input type="text" maxlength="2" name="minutes" size=2 id="minutes" value="{EDIT_MINUTES}" /></td></tr>
+							<tr><td style="color:rgb(17, 80, 152); font-weight:bold">Contexte :</td><td><textarea name="contexte" style="width: 400px; height: 80px;" rows=5 cols=50 id="contexte">{EDIT_CONTEXTE}</textarea></td></tr>
+							<tr><td style="color:rgb(17, 80, 152); font-weight:bold">Appareil :</td><td>
+								<select name="appareil" id="appareil">
+									<option value="F18" <!-- IF EDIT_APPAREIL == "F18" --> selected <!-- ENDIF -->>F/A-18C</option>
+									<option value="M2000C" <!-- IF EDIT_APPAREIL == "M2000C" --> selected <!-- ENDIF -->>M-2000C</option>
+									<option value="Ka50" <!-- IF EDIT_APPAREIL == "Ka50" --> selected <!-- ENDIF -->>Ka-50</option>
+									<option value="UH1H" <!-- IF EDIT_APPAREIL == "UH1H" --> selected <!-- ENDIF -->>UH-1H</option>
+									<option value="Mi8" <!-- IF EDIT_APPAREIL == "Mi8" --> selected <!-- ENDIF -->>Mi-8</option>
+									<option value="SA342" <!-- IF EDIT_APPAREIL == "SA342" --> selected <!-- ENDIF -->>SA342</option>
+									<option value="A10C" <!-- IF EDIT_APPAREIL == "A10C" --> selected <!-- ENDIF -->>A-10C</option>
+									<option value="F15C" <!-- IF EDIT_APPAREIL == "F15C" --> selected <!-- ENDIF -->>F-15C</option>
+									<option value="SU33" <!-- IF EDIT_APPAREIL == "SU33" --> selected <!-- ENDIF -->>SU-33</option>
+									
+								</select></td></tr>
+							<tr><td style="color:rgb(17, 80, 152); font-weight:bold">Avis du pilote :</td><td><textarea name="pilote" style="width: 400px; height: 80px;" rows=5 cols=50 id="pilote">{EDIT_AVIS_PILOTE}</textarea></td></tr>
+							<tr><td style="color:rgb(17, 80, 152); font-weight:bold">Lien forum :</td><td>
+								<input type="text" name="lien" id="lien" value="{EDIT_LIEN}" />
+							</td></tr>
+						</table>
+						<div style="text-align:center; margin-bottom:10px;">
+							<input type="hidden" name="edit" id="edit" value=1 />
+							<input type="hidden" name="id_fiche" id="id_fiche" value={ID_FICHE} />
+							<input type="submit" value="Enregistrer" /><input type="reset" value="Annuler" />
+						</div>
+					</form>
+					
+				</div>
+				</div>
+				<!-- ENDIF -->
+				
+				<!-- BEGIN vol -->
+				<div style="background-color:white; min-height:150px; border:1px solid black; margin-bottom:15px;">
+					<div>
+						<h3 style="display: block; margin: auto; text-align: center; padding: 5px;">
+							{vol.TYPE} - {vol.TITRE} - {vol.DATE}  <!-- IF DISPLAY_ADMIN || DISPLAY_OWN--><a href="/forum/fiche_pilote.php?id={ID_FORUM}&edit=1&id_fiche={vol.ID_VOL}"><img width=16 src="/forum/images/edit2.png" title="Editer l'entrée" /></a><!-- ENDIF --><!-- IF DISPLAY_ADMIN && (vol.TYPE == "training") --><a href="/forum/fiche_pilote.php?id={ID_FORUM}&instruct=1&id_fiche={vol.ID_VOL}"><img width=16 src="/forum/images/edit.png" title="Avis instructeur" /></a><!-- ENDIF --><!-- IF DISPLAY_ADMIN || DISPLAY_OWN--><a href="/forum/fiche_pilote.php?id={ID_FORUM}&del=1&id_fiche={vol.ID_VOL}"><img width=16 src="/forum/images/no.png" title="Supprimer l'entrée" /></a><!-- ENDIF -->
+						</h3>
+						<div style="float: left; min-height: 100px; width: 100px; margin-left: 10px; margin-top: 10px; text-align: center; margin-bottom:10px;">
+							<img style="box-shadow:3px 3px grey" src="/forum/images/{vol.TYPE}.png" width=80px /><br />
+							<span style="font-size:1.4em"><b>{vol.TPS}</b></span><br />
+							<!-- IF vol.LIEN != "" -->
+							<span style="text-align:center;"><a href="{vol.LIEN}">Lien forum</a></span>
+							<!-- ENDIF -->
+							<br /><br />
+							<span style="text-align:center;"><img src="/forum/images/{vol.APPAREIL}.png" width=80px /></span>
+						</div>
+						<div style="float: left; margin-left: 15px; width: 350px; margin-top:10px; margin-bottom:10px;">
+							<p><span style="color:rgb(17, 80, 152)"><b>Contexte:</b></span> {vol.CONTEXTE}
+							<br /><br />
+							<span style="color:rgb(17, 80, 152)"><b>Avis du pilote:</b></span> {vol.AVIS_PILOTE}
+							<!-- IF vol.TYPE == "training" -->
+							<br /><br />
+							<span style="color:rgb(17, 80, 152)"><b>Avis de l'instructeur:</b></span> {vol.AVIS_INSTRUC}
+							<!-- ENDIF -->
+							<br />
+							</p>
+						</div>
+						<div style="clear:both"></div>
+					</div>
+				</div>
+				<!-- END vol -->
+			<!-- ENDIF -->
+			
+			<div style="margin:auto; text-align:center; margin-bottom:15px">
+				<!-- IF PAGE > 1 -->
+					<a href="/forum/fiche_pilote.php?id={ID_FORUM}&p={PREVIOUS_PAGE}"><</a>
+				<!-- ENDIF --> 
+				{PAGE}
+				<!-- IF COUNT_VOL > 4 -->
+				<a href="/forum/fiche_pilote.php?id={ID_FORUM}&p={NEXT_PAGE}">></a>
+				<!-- ENDIF -->
+			</div>
+			
+			<!-- IF ADD_VOL -->
+			<div style="background-color:white; min-height:150px; border:1px solid black; margin-bottom:15px;">
+				<div>
+					<h3 style="display: block; margin: auto; text-align: center; padding: 5px;">
+						Ajouter un vol
+					</h3>
+					<form action="/forum/fiche_pilote.php?id={ID_FORUM}" method="post">
+						<table>
+							<tr><td style="color:rgb(17, 80, 152); font-weight:bold">Type :</td><td>
+								<select name="type" id="type">
+									<option value="training">Training</option>
+									<option value="mission">Mission</option>
+								</select>
+							</td></tr>
+							<tr><td style="color:rgb(17, 80, 152); font-weight:bold">Titre :</td><td><input type="text" name="titre" id="titre" /></td></tr>
+							<tr><td style="color:rgb(17, 80, 152); font-weight:bold">Date :</td><td><input type="text" maxlength="2" name="day" id="day" size=2 /> / <input type="text" maxlength="2" name="month" size=2 id="month" /> / <input type="text" maxlength="4" name="year" size=4 id="year" value="{CURRENT_YEAR}" /></td></tr>
+							<tr><td style="color:rgb(17, 80, 152); font-weight:bold">Tps de vol :</td><td><input type="text" maxlength="2" name="heure" id="heure" size=2 /> : <input type="text" maxlength="2" name="minutes" size=2 id="minutes" /></td></tr>
+							<tr><td style="color:rgb(17, 80, 152); font-weight:bold">Contexte :</td><td><textarea name="contexte" style="width: 400px; height: 80px;" rows=5 cols=50 id="contexte"></textarea></td></tr>
+							<tr><td style="color:rgb(17, 80, 152); font-weight:bold">Appareil :</td><td>
+								<select name="appareil" id="appareil">
+									<option value="F18">F/A-18C</option>
+									<option value="M2000C">M-2000C</option>
+									<option value="Ka50">Ka-50</option>
+									<option value="UH1H">UH-1H</option>
+									<option value="Mi8">Mi-8</option>
+									<option value="SA342">SA342</option>
+									<option value="A10C">A-10C</option>
+									<option value="F15C">F-15C</option>
+									<option value="SU33">SU-33</option>
+								</select></td></tr>
+							<tr><td style="color:rgb(17, 80, 152); font-weight:bold">Avis du pilote :</td><td><textarea name="pilote" style="width: 400px; height: 80px;" rows=5 cols=50 id="pilote"></textarea></td></tr>
+							<tr><td style="color:rgb(17, 80, 152); font-weight:bold">Lien forum :</td><td>
+								<input type="text" name="lien" id="lien" />
+							</td></tr>
+						</table>
+						<div style="text-align:center; margin-bottom:10px;">
+							<input type="hidden" name="add" id="add" value=1 />
+							<input type="submit" value="Enregistrer" /><input type="reset" value="Annuler" />
+						</div>
+					</form>
+					
+				</div>
+			</div>
+			<!-- ENDIF -->
+		</div>
+		<!-- ENDIF -->
+		<div style="clear:both"></div>
+	</div>
+</div>
+<!-- INCLUDE overall_footer.html -->
