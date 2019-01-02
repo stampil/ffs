@@ -4038,11 +4038,11 @@ function get_recurring_event_string( $row )
 
 	if( $row['event_all_day'] == 0 )
 	{
-		$timestamp = $timestamp + (($row['poster_timezone'] + $row['poster_dst'])*3600);
+		//$timestamp = $timestamp + (($row['poster_timezone'] + $row['poster_dst'])*3600);
 
 		// we only need to display a timezone reference if it's different from the viewer
 		// and it's a timed (not all day) event
-		if( ($user->data['user_timezone'] + $user->data['user_dst']) !=
+		/*if( ($user->data['user_timezone'] + $user->data['user_dst']) !=
 			($row['poster_timezone'] + $row['poster_dst']) )
 		{
 			$poster_time = strval(doubleval($row['poster_timezone']));
@@ -4051,7 +4051,7 @@ function get_recurring_event_string( $row )
 			{
 				$timezone_string = $timezone_string . " " . $user->lang['tz']['dst'];
 			}
-		}
+		}*/
 	}
 
 	$month = gmdate("F", $timestamp);
