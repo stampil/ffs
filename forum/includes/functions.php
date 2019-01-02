@@ -4384,7 +4384,24 @@ function page_header($page_title = '', $display_online_list = false, $item_id = 
 		}
 	}
         
-        
+        //Récupération infos Calendrier
+	$time_now = time()-2*3600;
+	
+	$sql = "SELECT * FROM phpbb_calendar_events INNER JOIN phpbb_calendar_event_types ON phpbb_calendar_events.etype_id = phpbb_calendar_event_types.etype_id WHERE phpbb_calendar_events.event_start_time >= $time_now ORDER BY phpbb_calendar_events.event_start_time ASC LIMIT 7";
+	$result = $db->sql_query($sql);
+	while($data = $db->sql_fetchrow($result))
+	{
+		$date = date('d',$data['event_start_time']).'/'.date('m',$data['event_start_time']).'/'.date('y',$data['event_start_time']);
+		$heure = date('H',$data['event_start_time'])+2 .':'.date('i',$data['event_start_time']);
+		$template->assign_block_vars('events', array(
+			'DATE' 		=> $date,
+			'HEURE'		=> $heure,
+			'COLOR'		=> $data['etype_color'],
+			'TYPE'		=> $data['etype_display_name'],
+			'ID'		=> $data['event_id'],
+			'EVENT' 	=> $data['event_subject']
+		));
+	}
         
         //Récupération infos Pilotes
 		$FFS = 12;
