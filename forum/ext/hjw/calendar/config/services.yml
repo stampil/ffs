@@ -1,0 +1,30 @@
+services:
+    hjw.calendar.controller:
+        class: hjw\calendar\controller\main
+        arguments:
+            - @config
+            - @dbal.conn           
+            - @controller.helper
+            - @auth
+            - @template
+            - @user
+            - @request
+            - %core.root_path%
+            - .%core.php_ext%
+ 
+    hjw.calendar.listener:
+        class: hjw\calendar\event\main_listener
+        arguments:
+            - @config
+            - @dbal.conn           
+            - @controller.helper
+            - @auth
+            - @template
+            - @user
+            - @request
+            - @dispatcher
+            - %core.root_path%
+            - .%core.php_ext%
+
+        tags:
+            - { name: event.listener }            

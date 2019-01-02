@@ -1,0 +1,10 @@
+Subject: Benachrichtigung über einen neuen Kalendereintrag — „{EVENT_NAME}“
+
+Hallo {USERNAME},
+
+Sie erhalten diese Benachrichtigung, weil „{AUTHOR}“ auf „{SITENAME}“ eine neue Veranstaltung in den Kalender eingetragen hat.
+
+Sie können sich den Veranstaltungs-Eintrag ansehen, wenn Sie dem folgenden Link aufrufen:
+{U_CALENDAR_EVENT}
+
+{EMAIL_SIG}

@@ -1,0 +1,3 @@
+hjw_calendar_controller:
+    path: /calendar/
+    defaults: { _controller: hjw.calendar.controller:display }

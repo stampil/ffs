@@ -1,0 +1,10 @@
+Subject: Notification of a changed subscriber entry - "{EVENT_NAME}".
+
+Hello {USERNAME},
+
+you receive this notification because "{AUTHOR}" on "{SITENAME}" has changed its entry in the participant list of an event.
+
+You can view the event entry by clicking on the following link:
+{U_CALENDAR_EVENT}
+
+{EMAIL_SIG}

@@ -1,0 +1,13 @@
+<!-- IF not S_IS_BOT and S_USER_LOGGED_IN || S_IS_BOT and S_CALENDAR_FOR_GUESTS || !S_USER_LOGGED_IN and S_CALENDAR_FOR_GUESTS -->
+	<!-- IF VERSION =='3.1' -->
+		<li class="small-icon icon-cal" <!-- IF not S_USER_LOGGED_IN -->data-skip-responsive="true"<!-- ELSE -->data-last-responsive="true"<!-- ENDIF -->>
+		<a href="{U_CALENDAR}" title="{L_CALENDAR}" role="menuitem">{L_CALENDAR}</a></li>
+	<!-- ENDIF -->
+	<!-- IF VERSION =='3.2' -->
+		<li data-last-responsive="true">
+			<a href="{U_CALENDAR}" title="{L_CALENDAR}" role="menuitem">
+				<i class="icon fa-calendar" aria-hidden="true"></i><span>{L_CALENDAR}</span>
+			</a>
+		</li>
+	<!-- ENDIF -->
+<!-- ENDIF -->

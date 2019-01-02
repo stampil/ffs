@@ -1,0 +1,232 @@
+<!-- INCLUDE overall_header.html -->
+	<h1>{L_ACP_CALENDAR_SETTINGS}</h1>
+	<form action="{U_ACTION}" method="POST">
+		<fieldset>
+			<dl>
+				<dt>
+					{L_ACP_CALENDAR_TAB_TEXT}
+				</dt>
+				<dd>
+					<select name="hjw_calendar_tab" size="1" onchange="this.form.submit();"> 
+					<!-- BEGIN tab -->
+						{tab.SELECT}
+					<!-- END tab -->
+					</select>
+				</dd>
+			</dl>
+			<dl>
+				<dt>
+					{L_ACP_CALENDAR_WEEK_START}
+				</dt>
+				<dd>
+					<select name="hjw_calendar_week_start" size="1" onchange="this.form.submit();"> 
+					<!-- BEGIN weekstart -->
+						{weekstart.SELECT}
+					<!-- END weekstart -->
+					</select>
+				</dd>
+			</dl>
+			<dl>
+				<dt>
+					{L_ACP_CALENDAR_WEEK_DISPLAY} 
+				</dt>
+				<dd>
+					<label>
+						<input type="radio" name="hjw_calendar_week_display" value="1" {CWD1} onchange="this.form.submit();"> {L_YES} 
+					</label>
+					<label>
+						<input type="radio" name="hjw_calendar_week_display" value="0" {CWD0} onchange="this.form.submit();"> {L_NO} 
+					</label>
+				</dd>
+			</dl>
+			<dl>
+				<dt>
+					{L_ACP_CALENDAR_LEGEND_DISPLAY} 
+				</dt>
+				<dd>
+					<label>
+						<input type="radio" name="hjw_calendar_legend_display" value="1" {CLD1} onchange="this.form.submit();"> {L_YES} 
+					</label>
+					<label>
+						<input type="radio" name="hjw_calendar_legend_display" value="0" {CLD0} onchange="this.form.submit();"> {L_NO} 
+					</label>
+				</dd>
+			</dl>
+			<dl>
+				<dt>
+					{L_ACP_CALENDAR_FOR_GUESTS}
+				</dt>
+				<dd>
+					<label>
+						<input type="radio" name="hjw_calendar_for_guests" value="1" {CFG1} onchange="this.form.submit();"> {L_YES} 
+					</label>
+					<label>
+						<input type="radio" name="hjw_calendar_for_guests" value="0" {CFG0} onchange="this.form.submit();"> {L_NO} 
+					</label>
+				</dd>
+			</dl>
+			<dl>
+				<dt>
+					{L_ACP_BIRTHDAY_ON_CALENDAR} 
+				</dt>
+				<dd>
+					<label>
+						<input type="radio" name="hjw_calendar_birthday_on_calendar" value="1" {BOC1} onchange="this.form.submit();"> {L_YES} 
+					</label>
+					<label>
+						<input type="radio" name="hjw_calendar_birthday_on_calendar" value="0" {BOC0} onchange="this.form.submit();"> {L_NO} 
+					</label>
+				</dd>
+			</dl>
+			<dl>
+				<dt>
+					{L_ACP_CALENDAR_ONLY_FIRST_POST} 
+				</dt>
+				<dd>
+					<label>
+						<input type="radio" name="hjw_calendar_only_first_post" value="1" {COFP1} onchange="this.form.submit();"> {L_YES} 
+					</label>
+					<label>
+						<input type="radio" name="hjw_calendar_only_first_post" value="0" {COFP0} onchange="this.form.submit();"> {L_NO} 
+					</label>
+				</dd>
+			</dl>
+			<dl>
+				<dt>
+					{L_ACP_CALENDAR_INSTRUCTIONS_TEXT}
+				</dt>
+				<dd>
+					<select name="hjw_calendar_week_or_next" size="1" onchange="this.form.submit();"> 
+					<!-- BEGIN weeknext -->
+						{weeknext.SELECT}
+					<!-- END weeknext -->
+					</select>
+				</dd>
+			</dl>
+			<dl>
+				<dt>
+					{L_ACP_CALENDAR_INSTRUCTIONS_TEXT_0}
+				</dt>
+				<dd>
+					<select name="hjw_calendar_week_on_index" size="1" onchange="this.form.submit();"> 
+					<!-- BEGIN weekblock -->
+						{weekblock.SELECT}
+					<!-- END weekblock -->
+					</select>
+				</dd>
+			</dl>
+			<dl>
+				<dt>
+					{L_ACP_CALENDAR_NUMBER_OF_WEEKS}
+				</dt>
+				<dd>
+					<input type="number" min="1" name="hjw_calendar_number_of_weeks" value="{NUMBER_OF_WEEKS}" onchange="this.form.submit();" /> 
+				</dd>
+			</dl>
+			<dl>
+				<dt>
+					{L_ACP_CALENDAR_ON_INDEX_OFF}
+				</dt>
+				<dd>
+				<dd>
+					<label>
+						<input type="radio" name="hjw_calendar_on_index_off" value="1" {COIO1} onchange="this.form.submit();"> {L_YES} 
+					</label>
+					<label>
+						<input type="radio" name="hjw_calendar_on_index_off" value="0" {COIO0} onchange="this.form.submit();"> {L_NO} 
+					</label>
+				</dd>
+				</dd>
+			</dl>
+			<dl>
+				<dt>
+					{L_ACP_CALENDAR_NUMBER_PARTICIPATING} 
+				</dt>
+				<dd>
+					<label>
+						<input type="radio" name="hjw_calendar_number_participating" value="1" {CNP1} onchange="this.form.submit();"> {L_YES} 
+					</label>
+					<label>
+						<input type="radio" name="hjw_calendar_number_participating" value="0" {CNP0} onchange="this.form.submit();"> {L_NO} 
+					</label>
+				</dd>
+			</dl>
+			<!-- IF CNP1 -->
+				<dl>
+					<dt>
+						{L_ACP_CALENDAR_PARTICIPANTS_NAME} 
+					</dt>
+					<dd>
+					<label>
+						<input type="radio" name="hjw_calendar_participants_name" value="1" {CPN1} onchange="this.form.submit();"> {L_YES} 
+					</label>
+					<label>
+						<input type="radio" name="hjw_calendar_participants_name" value="0" {CPN0} onchange="this.form.submit();"> {L_NO} 
+					</label>
+					</dd>
+				</dl>
+			<!-- ENDIF -->
+		</fieldset>
+		<fieldset>
+			<dl>
+				<dt>
+					{L_ACP_CALENDAR_NOTIFY} 
+				</dt>
+				<dd>
+					<label>
+						<input type="radio" name="hjw_calendar_notify" value="1" {CN1} onchange="this.form.submit();"> {L_YES} 
+					</label>
+					<label>
+						<input type="radio" name="hjw_calendar_notify" value="0" {CN0} onchange="this.form.submit();"> {L_NO} 
+					</label>
+				</dd>
+			</dl>
+			<dl>
+				<dt>
+					{L_ACP_CALENDAR_NOTIFY_PARTICIPATING} 
+				</dt>
+				<dd>
+					<label>
+						<input type="radio" name="hjw_calendar_notify_participating" value="1" {CNPP1} onchange="this.form.submit();"> {L_YES} 
+					</label>
+					<label>
+						<input type="radio" name="hjw_calendar_notify_participating" value="0" {CNPP0} onchange="this.form.submit();"> {L_NO} 
+					</label>
+				</dd>
+			</dl>
+			<dl>
+				<dt>
+					
+				</dt>
+				<dd>
+					<label>
+						<input type="radio" name="hjw_calendar_notify_participating_adress" value="1" {CNPPA1} onchange="this.form.submit();"> {L_ACP_CALENDAR_ALL} 
+					</label>
+					<label>
+						<input type="radio" name="hjw_calendar_notify_participating_adress" value="0" {CNPPA0} onchange="this.form.submit();"> {L_ACP_CALENDAR_ONLY_PARTICIPANT} 
+					</label>
+					<label>
+						<input type="radio" name="hjw_calendar_notify_participating_adress" value="2" {CNPPA2} onchange="this.form.submit();"> {L_ACP_CALENDAR_ONLY_AUTOR} 
+					</label>
+				</dd>
+			</dl>
+		</fieldset>
+		<!-- IF CALENDAR_FOOTBALL -->
+		<fieldset>
+			<dl>
+				<dt>
+					{L_ACP_FOOTBALL_ON_CALENDAR} 
+				</dt>
+				<dd>
+					<label>
+						<input type="radio" name="hjw_calendar_football" value="1" {CFB1} onchange="this.form.submit();"> {L_YES} 
+					</label>
+					<label>
+						<input type="radio" name="hjw_calendar_football" value="0" {CFB0} onchange="this.form.submit();"> {L_NO} 
+					</label>
+				</dd>
+			</dl>
+		</fieldset>
+		<!-- ENDIF -->
+	</form>
+<!-- INCLUDE overall_footer.html -->

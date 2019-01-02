@@ -1,0 +1,111 @@
+<!-- IF not S_IS_BOT and S_USER_LOGGED_IN || S_IS_BOT and S_CALENDAR_FOR_GUESTS || !S_USER_LOGGED_IN and S_CALENDAR_FOR_GUESTS -->
+	<!-- INCLUDE overall_header.html -->
+	<div id="calendar">
+		<div>
+			<div class="inner">
+				<div class="cal_month_title">
+					<form action="{U_CALENDAR}" method="POST">
+						<a href="{PREVIOUS}">&lt;&lt;</a>
+						<select name="newmonth" size="1" onchange="this.form.submit();"> 
+							<!-- BEGIN month -->
+								{month.SELECT}
+							<!-- END month -->
+						</select>
+						<select name="newyear" size="1" onchange="this.form.submit();"> 
+							<!-- BEGIN year -->
+								{year.SELECT}
+							<!-- END year -->
+						</select>
+						<a href="{NEXT}">&gt;&gt;</a>
+					</form>	
+				</div>
+				<div class="week">
+					<div class="nday">
+						{DAY1}
+					</div>
+					<div class="nday">	
+						{DAY2}
+					</div>
+					<div class="nday">	
+						{DAY3}
+					</div>
+					<div class="nday">	
+						{DAY4}
+					</div>
+					<div class="nday">	
+						{DAY5}
+					</div>
+					<div class="nday">	
+						{DAY6}
+					</div>
+					<div class="nday">	
+						{DAY7}
+					</div>
+				</div>
+				<div class="week">
+					<!-- BEGIN day -->
+						<!-- IF day.I == 0 && day.WEEK || day.I == 7 && day.WEEK -->
+							<div class="weeknr">
+								{day.WEEK}
+							</div>
+						<!-- ENDIF -->
+						<!-- IF !day.INDEX -->
+							<div class="wday {day.BG} {day.TODAY} {day.NODAY}">
+							<div class="kday">	
+								<div class="day">{day.DATE}</div>
+							</div>
+								<div class="cal-day">{day.HDAY}</div>
+								<!-- BEGIN day.cdh -->
+									<div>
+										<!-- IF day.cdh.EVENT_NAME -->
+									<span class="sday">
+										<!-- IF day.cdh.LINK --><a<!-- ELSE --><span<!-- ENDIF--> class="{day.cdh.EVENTBG}" style="<!-- IF day.cdh.COLOR -->color:#{day.cdh.COLOR};<!-- ENDIF--><!-- IF day.cdh.BCOLOR -->background-color:#{day.cdh.BCOLOR};<!-- ENDIF--><!-- IF day.cdh.BIG -->font-weight:bold;<!-- ENDIF-->"<!-- IF day.cdh.EVENT_TITLE --> title="{day.cdh.EVENT_TITLE}<!-- IF day.cdh.PART -->{day.cdh.TR}{day.cdh.PART}<!-- ENDIF-->"<!-- ENDIF--><!-- IF day.cdh.LINK --> href="{day.cdh.LINK}"<!-- ENDIF--><!-- IF day.cdh.XXX --> onclick="window.open(this.href); return false;"<!-- ENDIF--> >
+										{day.cdh.EVENT_NAME}<!-- IF day.cdh.NR --> [{day.cdh.NR}]<!-- ENDIF-->
+										<!-- IF day.cdh.LINK --></a><!-- ELSE --></span><!-- ENDIF-->
+									</span>
+									<span class="kday">
+										<!-- IF day.cdh.LINK --><a<!-- ELSE --><span<!-- ENDIF--> class="{day.cdh.EVENTBG}" style="line-height:2em;<!-- IF day.cdh.COLOR -->color:#{day.cdh.COLOR};<!-- ENDIF--><!-- IF day.cdh.BCOLOR -->background-color:#{day.cdh.BCOLOR};<!-- ENDIF--><!-- IF day.cdh.BIG -->font-weight:bold;<!-- ENDIF-->"<!-- IF day.cdh.LINK --> href="{day.cdh.LINK}" <!-- ENDIF--><!-- IF day.cdh.XXX -->onclick="window.open(this.href); return false;"<!-- ENDIF--> >
+										{day.cdh.EVENT_TITLE} <!-- IF day.cdh.NR -->[{day.cdh.NR}]<!-- ENDIF--> 
+										<!-- IF day.cdh.LINK --></a><!-- ELSE --></span><!-- ENDIF-->
+									</span>
+									<br />
+										<!-- ENDIF -->
+									</div>
+								<!-- END day.cdh -->
+							</div>
+							<!-- IF day.I == 6 -->
+								</div>
+								<div class="week">
+							<!-- ENDIF -->
+						<!-- ENDIF -->
+					<!-- END day -->
+				</div>
+				<!-- IF EVENT_LEGEND -->
+					<div class="week">
+						<!-- IF WEEK -->
+							<div class="weeknr">
+							</div>
+						<!-- ENDIF -->
+						<div class="event-legend">
+							<div class="legend">{L_LEGEND}</div>
+							<!-- BEGIN calendar_events -->
+								<div class="wday sun" style="display:block;min-height:2em;height:2em;text-align:center;float:left;margin-top:3px;">
+									<span style="text-align:center;color:#{calendar_events.COLOR};
+										<!-- IF calendar_events.BCOLOR -->
+											background-color:#{calendar_events.BCOLOR};border-radius:13px;padding:0 3px;
+										<!-- ENDIF-->">{calendar_events.EVENT}
+								</div>
+							<!-- END calendar_events -->
+						</div>
+					</div>
+				<!-- ENDIF -->
+			</div>
+		</div>
+	</div>
+	<div class="copyright">
+		<a href="http://calendar.zoo-am-ring.de">{L_CALENDAR}</a>  hjw 2018
+	</div>
+	<!-- INCLUDE overall_footer.html -->
+<!-- ELSE -->
+	<!-- INCLUDE login_body.html -->
+<!-- ENDIF -->

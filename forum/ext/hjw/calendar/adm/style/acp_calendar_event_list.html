@@ -1,0 +1,122 @@
+<!-- INCLUDE overall_header.html -->
+	<h1>{L_ACP_CALENDAR_APPOINTMENT_LIST}</h1>
+	<p>{L_ACP_CALENDAR_APPOINTMENT_LIST_TEXT}</p>
+	<!-- IF S_EDIT_CALENDAR_EVENT -->
+		<form action="{U_MODIFY}" method="POST">
+			<fieldset class="submit-buttons" style="text-align:left;">
+				<dl style ="margin-bottom:0px;">
+					<dt style="width:200px"><label>{L_ACP_CALENDAR_APPOINTMENT_NAME}</label></dt>
+					<dd style="margin-left:200px;"><input type="text" name="appointment" size="16" value="{APPOINTMENT}" /></dd>
+				</dl>
+				<dl style ="margin-bottom:0px;">
+					<dt style="width:200px"><label>{L_ACP_CALENDAR_APPOINTMENT_DESCRIPTION}</label></dt>
+					<dd style="margin-left:200px;"><input type="text" name="description" size="16" value="{DESCRIPTION}" /></dd>
+				</dl>
+				<dl style ="margin-bottom:0px;">
+					<dt style="width:200px"><label>{L_ACP_CALENDAR_APPOINTMENT_LINK}</label></dt>
+					<dd style="margin-left:200px;"><input type="text" name="link" size="16" value="{LINK}" /></dd>
+				</dl>
+				<dl style ="margin-bottom:0px;">
+					<dt style="width:200px"><label>{L_ACP_CALENDAR_ANNIVERSARY}</label></dt>
+					<dd style="margin-left:200px;"><input type="checkbox" name="anniversary" <!-- IF ANNIVERSARY -->checked="checked" <!-- ENDIF -->value="1" /></dd>
+				</dl>
+				<dl style ="margin-bottom:0px;">
+					<dt style="width:200px;"><label>{L_ACP_CALENDAR_DATE_FROM}</label></dt>
+					<dd style="margin-left:200px;">
+						<select name="from_day"> 
+							<!-- BEGIN from_day -->
+								{from_day.SELECT}
+							<!-- END from_day -->
+						</select>
+						<select name="from_month"> 
+							<!-- BEGIN from_month -->
+								{from_month.SELECT}
+							<!-- END from_month -->
+						</select>
+						<input type="text" name="from_year" size="4" value="{DATE_FROM_YEAR}" />
+					</dd>
+				</dl>
+				<dl style ="margin-bottom:0px;">
+					<dt style="width:200px;"><label>{L_ACP_CALENDAR_DATE_TO}</label></dt>
+					<dd style="margin-left:200px;">
+						<select name="to_day"> 
+							<!-- BEGIN to_day -->
+								{to_day.SELECT}
+							<!-- END to_day -->
+						</select>
+						<select name="to_month"> 
+							<!-- BEGIN to_month -->
+								{to_month.SELECT}
+							<!-- END to_month -->
+						</select>
+						<input type="text" name="to_year" size="4" value="{DATE_TO_YEAR}" />
+					</dd>
+				</dl>
+				<dl style ="margin-bottom:0px;">
+					<dt style="width:200px"><label>{L_ACP_CALENDAR_BIG}</label></dt>
+					<dd style="margin-left:200px;"><input type="checkbox" name="big" <!-- IF BIG == 1 -->checked="checked" <!-- ENDIF -->value="1" /></dd>
+				</dl>
+				<dl>
+					<dt style="width:200px"><label for="color">{L_ACP_CALENDAR_COLOR}</label></dt>
+					<dd style="margin-left:200px;">
+						<input name="color" type="text" id="color" value="{COLOR}" size="6" maxlength="6" />
+						<!-- IF COLOR -->&nbsp;<span style="background-color: #{COLOR}">&nbsp; &nbsp;</span><!-- ENDIF -->&nbsp;&nbsp;<span>
+						[	 <a href="#" id="color_palette_toggle">{L_COLOUR_SWATCH}</a> ]</span>
+						<div id="color_palette_placeholder" style="display: none;" data-orientation="h" data-height="12" data-width="15" data-target="#color"></div>
+					</dd>
+				</dl>
+				<dl>
+					<dt style="width:200px"><label for="bcolor">{L_ACP_CALENDAR_COLOR_B}</label></dt>
+					<dd style="margin-left:200px;">
+						<input name="bcolor" type="text" id="bcolor" value="{BCOLOR}" size="6" maxlength="6" />
+						<!-- IF BCOLOR -->&nbsp;<span style="background-color: #{BCOLOR}">&nbsp; &nbsp;</span><!-- ENDIF -->&nbsp;&nbsp;<span>
+					</dd>
+				</dl>
+				<p class="submit-buttons">
+					<input class="button1" type="submit" name="send" value="{L_ACP_CALENDAR_SEND}" />&nbsp;
+					<input class="button2" type="reset" id="reset" name="reset" value="{L_ACP_CALENDAR_RESET}" />
+				</p>
+				{S_FORM_TOKEN}
+			</fieldset>
+		</form>
+	<!-- ELSE -->
+		<form id="acp_events" method="post" action="{U_ACTION}">
+			<fieldset class="tabulated">
+				<table class="table1 zebra-table" id="down">
+					<thead>
+						<tr>
+							<th style="text-align:center">{L_ACP_CALENDAR_APPOINTMENT_NAME}</th>
+							<th style="text-align:center">{L_ACP_CALENDAR_APPOINTMENT_DESCRIPTION}</th>
+							<th style="text-align:center">{L_ACP_CALENDAR_APPOINTMENT_LINK}</th>
+							<th style="text-align:center">{L_ACP_CALENDAR_ANNIVERSARY}</th>
+							<th style="text-align:center">{L_ACP_CALENDAR_DATE_FROM}</th>
+							<th style="text-align:center">{L_ACP_CALENDAR_DATE_TO}</th>
+							<th style="text-align:center">{L_ACTION}</th>
+						</tr>
+					</thead>
+					<tbody>
+						<!-- BEGIN calendar_appointment -->
+							<tr>
+								<td style="text-align:center;color:#{calendar_appointment.COLOR};<!-- IF calendar_appointment.BCOLOR -->background-color:#{calendar_appointment.BCOLOR};border-radius:13px;padding:0 3px;<!-- ENDIF-->">{calendar_appointment.APPOINTMENT}</td>
+								<td style="text-align:center;color:#{calendar_appointment.COLOR};<!-- IF calendar_appointment.BCOLOR -->background-color:#{calendar_appointment.BCOLOR};border-radius:13px;padding:0 3px;<!-- ENDIF-->">{calendar_appointment.DESCRIPTION}</td>
+								<td style="text-align:center;color:#{calendar_appointment.COLOR};<!-- IF calendar_appointment.BCOLOR -->background-color:#{calendar_appointment.BCOLOR};border-radius:13px;padding:0 3px;<!-- ENDIF-->">{calendar_appointment.LINK}</td>
+								<td style="text-align:center;color:#{calendar_appointment.COLOR};<!-- IF calendar_appointment.BCOLOR -->background-color:#{calendar_appointment.BCOLOR};border-radius:13px;padding:0 3px;<!-- ENDIF-->">{calendar_appointment.ANNIVERSARY}</td>
+								<td style="text-align:center;color:#{calendar_appointment.COLOR};<!-- IF calendar_appointment.BCOLOR -->background-color:#{calendar_appointment.BCOLOR};border-radius:13px;padding:0 3px;<!-- ENDIF-->">{calendar_appointment.DATE_FROM}</td>
+								<td style="text-align:center;color:#{calendar_appointment.COLOR};<!-- IF calendar_appointment.BCOLOR -->background-color:#{calendar_appointment.BCOLOR};border-radius:13px;padding:0 3px;<!-- ENDIF-->">{calendar_appointment.DATE_TO}</td>
+								<td class="actions" style="text-align:center"><a href="{calendar_appointment.U_EDIT}">{ICON_EDIT}</a> <a href="{calendar_appointment.U_DELETE}" data-ajax="row_delete">{ICON_DELETE}</a></td>
+							</tr>
+						<!-- BEGINELSE -->
+							<tr class="row3">
+								<td colspan="2">{L_ACP_NO_ITEMS}</td>
+							</tr>
+						<!-- END calendar_appointment -->
+					</tbody>
+				</table>
+				<p class="quick" style="max-width:500px;text-align:center;">
+					<input class="button2" name="submit" type="submit" value="{L_ACP_CALENDAR_APPOINTMENT_CREATE}" />
+				</p>
+				{S_FORM_TOKEN}
+			</fieldset>
+		</form>
+	<!-- ENDIF -->
+<!-- INCLUDE overall_footer.html -->

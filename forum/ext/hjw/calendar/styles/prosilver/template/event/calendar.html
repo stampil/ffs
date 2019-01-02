@@ -1,0 +1,125 @@
+					<dl>
+						<dt>
+							{L_CALENDAR_EVENT_NAME}
+						</dt>
+						<dd>
+							<input name="event_name" type="text" size="23" value="{EVENT_NAME}">
+						</dd>
+					</dl>
+					<dl>
+						<dt>
+							{L_CALENDAR_EVENT} 
+						</dt>
+						<dd>
+							<select name="event"> 
+								<!-- BEGIN eventselect -->
+									{eventselect.SELECT}
+								<!-- END eventselect -->
+							</select>
+						</dd>
+					</dl>
+					<dl>
+						<dt>
+							{L_CALENDAR_FROM} 
+						</dt>
+						<dd>
+							<select name="from_day">
+								<!-- BEGIN from_day -->
+									{from_day.SELECT}
+								<!-- END from_day -->
+							</select>
+							<select name="from_month">
+								<!-- BEGIN from_month -->
+									{from_month.SELECT}
+								<!-- END from_month -->
+							</select>
+							<select name="from_year">
+								<!-- BEGIN from_year -->
+									{from_year.SELECT}
+								<!-- END from_year -->
+							</select>
+						</dd>
+					</dl>
+					<dl>
+						<dt>
+							{L_CALENDAR_TO}
+						</dt>
+						<dd>
+							<select name="to_day">
+								<!-- BEGIN to_day -->
+									{to_day.SELECT}
+								<!-- END to_day -->
+							</select>
+							<select name="to_month">
+								<!-- BEGIN to_month -->
+									{to_month.SELECT}
+								<!-- END to_month -->
+							</select>
+							<select name="to_year">
+								<!-- BEGIN to_year -->
+									{to_year.SELECT}
+								<!-- END to_year -->
+							</select>
+						</dd>
+					</dl>
+					<dl>
+						<dt>
+							{L_CALENDAR_REPEAT}
+						</dt>
+						<dd>
+							{L_NO} <input type="radio" name="calendar_repeat" value="0" {CR0} onchange="this.form.submit();"> &nbsp;
+							{L_YES} <input type="radio" name="calendar_repeat" value="1" {CR1} onchange="this.form.submit();">
+						</dd>
+					</dl>
+					<!-- IF CR1 -->
+						<dl>
+							<dt>
+							</dt>
+							<dd>
+								<input type="radio" name="calendar_repeat_dm" value="1" {CRD} onchange="this.form.submit();"> &nbsp;
+								{L_CALENDAR_REPEAT_DAYS_1}
+								<input name="calendar_repeat_day_number" type="number" style="width:45px;" value="{CALENDAR_REPEAT_DAY_NUMBER}">
+								{L_CALENDAR_REPEAT_DAYS_2}
+							</dd>
+						</dl>
+						<dl>
+							<dt>
+							</dt>
+							<dd>
+								<input type="radio" name="calendar_repeat_dm" value="0" {CRM} onchange="this.form.submit();"> &nbsp;
+								{L_CALENDAR_REPEAT_MONTH_1}
+								<input name="calendar_repeat_month_number" type="number" style="width:45px;" value="{CALENDAR_REPEAT_MONTH_NUMBER}">
+								{L_CALENDAR_REPEAT_MONTH_2}
+							</dd>
+						</dl>
+						<dl>
+							<dt>
+							</dt>
+							<dd>
+								<input type="radio" name="calendar_repeat_dm" value="2" {CRWD} onchange="this.form.submit();"> &nbsp;
+							<select name="calendar_every_weekday_number">
+								<!-- BEGIN every -->
+									{every.SELECT}
+								<!-- END every -->
+							</select>
+							.
+							<select name="calendar_every_weekday_name">
+								<!-- BEGIN weekday -->
+									{weekday.SELECT}
+								<!-- END weekday -->
+							</select>
+								{L_CALENDAR_EVERY_WEEKDAY}
+								<input name="calendar_every_month_number" type="number" style="width:45px;" value="{CALENDAR_REPEAT_MONTH_NUMBER}">
+								{L_CALENDAR_REPEAT_MONTH_2}
+							</dd>
+						</dl>
+					<!-- ENDIF -->
+					<dl>
+						<dt>
+							{L_CALENDAR_CANCELED}
+						</dt>
+						<dd>
+							{L_NO} <input type="radio" name="calendar_canceled" value="0" {CC0} onchange="this.form.submit();"> &nbsp;
+							{L_YES} <input type="radio" name="calendar_canceled" value="1" {CC1} onchange="this.form.submit();">
+						</dd>
+					</dl>

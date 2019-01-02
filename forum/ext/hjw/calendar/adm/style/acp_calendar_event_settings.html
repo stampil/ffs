@@ -1,0 +1,82 @@
+<!-- INCLUDE overall_header.html -->
+	<h1>{L_ACP_CALENDAR_EVENT_CREATE}</h1>
+	<p>{L_ACP_CALENDAR_EVENT_SETTINGS_TEXT}</p>
+	<!-- IF S_EDIT_CALENDAR_EVENT -->
+		<form action="{U_MODIFY}" method="POST">
+			<fieldset class="submit-buttons" style="text-align:left;">
+				<dl style ="margin-bottom:0px;">
+					<dt style="width:200px"><label>{L_ACP_CALENDAR_EVENT}</label></dt>
+					<dd style="margin-left:200px;"><input type="text" name="event" size="16" value="{EVENT}" /></dd>
+				</dl>
+				<dl>
+					<dt style="width:200px"><label for="color">{L_ACP_CALENDAR_COLOR}</label></dt>
+					<dd style="margin-left:200px;">
+						<input name="color" type="text" id="color" value="{COLOR}" size="6" maxlength="6" />
+						<!-- IF COLOR -->&nbsp;<span style="background-color: #{COLOR}">&nbsp; &nbsp;</span><!-- ENDIF -->&nbsp;&nbsp;<span>
+						[	 <a href="#" id="color_palette_toggle">{L_COLOUR_SWATCH}</a> ]</span>
+						<div id="color_palette_placeholder" style="display: none;" data-orientation="h" data-height="12" data-width="15" data-target="#color"></div>
+					</dd>
+				</dl>
+				<dl>
+					<dt style="width:200px"><label for="bcolor">{L_ACP_CALENDAR_COLOR_B}</label></dt>
+					<dd style="margin-left:200px;">
+						<input name="bcolor" type="text" id="bcolor" value="{BCOLOR}" size="6" maxlength="6" />
+						<!-- IF BCOLOR -->&nbsp;<span style="background-color: #{BCOLOR}">&nbsp; &nbsp;</span><!-- ENDIF -->&nbsp;&nbsp;<span>
+					</dd>
+				</dl>
+				<dl style ="margin-bottom:0px;">
+					<dt style="width:200px"><label>{L_ACP_CALENDAR_PARTICIPANT}</label></dt>
+					<dd style="margin-left:200px;"><input type="checkbox" name="participants" <!-- IF PARTICIPANTS == 1 -->checked="checked" <!-- ENDIF -->value="1" /></dd>
+				</dl>
+				<dl style ="margin-bottom:0px;">
+					<dt style="width:200px"><label>{L_ACP_CALENDAR_BIG}</label></dt>
+					<dd style="margin-left:200px;"><input type="checkbox" name="big" <!-- IF BIG == 1 -->checked="checked" <!-- ENDIF -->value="1" /></dd>
+				</dl>
+				<p class="submit-buttons">
+					<input class="button1" type="submit" name="send" value="{L_ACP_CALENDAR_SEND}" />&nbsp;
+					<input class="button2" type="reset" id="reset" name="reset" value="{L_ACP_CALENDAR_RESET}" />
+				</p>
+				{S_FORM_TOKEN}
+			</fieldset>
+		</form>
+	<!-- ELSE -->
+		<form id="acp_events" method="post" action="{U_ACTION}">
+			<fieldset class="tabulated">
+				<table class="table1 zebra-table" id="down">
+					<thead>
+						<tr>
+							<th style="text-align:center">{L_ACP_CALENDAR_EVENT}</th>
+							<th style="text-align:center">{L_PARTICIPANTS_LIST}</th>
+							<th style="text-align:center">{L_ACTION}</th>
+						</tr>
+					</thead>
+					<tbody>
+						<!-- BEGIN calendar_events -->
+							<tr>
+								<td style="text-align:center;color:#{calendar_events.COLOR};<!-- IF calendar_events.BCOLOR -->background-color:#{calendar_events.BCOLOR};border-radius:13px;padding:0 3px;<!-- ENDIF-->">{calendar_events.EVENT}</td>
+								<td style="text-align:center;color:#{calendar_events.COLOR};<!-- IF calendar_events.BCOLOR -->background-color:#{calendar_events.BCOLOR};border-radius:13px;padding:0 3px;<!-- ENDIF-->">{calendar_events.PARTICIPANTS}</td>
+								<td class="actions">
+									<span class="up-disabled" style="display:none;">{ICON_MOVE_UP_DISABLED}</span>
+									<span class="up"><a href="{calendar_events.U_MOVE_UP}">{ICON_MOVE_UP}</a></span>
+									<span class="down-disabled" style="display:none;">{ICON_MOVE_DOWN_DISABLED}</span>
+									<span class="down"><a href="{calendar_events.U_MOVE_DOWN}">{ICON_MOVE_DOWN}</a></span>
+									<a href="{calendar_events.U_EDIT}">{ICON_EDIT}</a>
+									<a href="{calendar_events.U_DELETE}" data-ajax="row_delete">{ICON_DELETE}</a>
+								</td>
+							</tr>
+						<!-- BEGINELSE -->
+							<tr class="row3">
+								<td colspan="2">{L_ACP_NO_ITEMS}</td>
+							</tr>
+						<!-- END calendar_events -->
+					</tbody>
+				</table>
+
+				<p class="quick" style="max-width:560px;text-align:center;">
+					<input class="button2" name="submit" type="submit" value="{L_ACP_CALENDAR_EVENT_CREATE}" />
+				</p>
+				{S_FORM_TOKEN}
+			</fieldset>
+		</form>
+	<!-- ENDIF -->
+<!-- INCLUDE overall_footer.html -->

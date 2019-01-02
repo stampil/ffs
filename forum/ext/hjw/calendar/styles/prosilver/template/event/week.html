@@ -1,0 +1,100 @@
+<!-- IF CALENDAR -->
+	<div id="index-calendar">
+		<!-- IF S_WEEK_OR_NEXT == 1 ||  S_WEEK_OR_NEXT == 3 -->
+			<div class="forabg" style="margin-bottom:4px;font-weight:bold;color:#FFFFFF;">{L_CALENDAR_WEEKLY_OVERVIEW}</div>
+			<div class="week">
+				<!-- BEGIN day -->
+					<div class="wday {day.BG}">
+							<div class="kday">	
+								<div class="day">{day.WD}, {day.DATE}
+								<!-- IF day.HDAY -->
+								, {day.HDAY}
+								<!-- ENDIF -->
+								</div>
+							</div>
+							<div class="sday">
+								<div class="cal-day"><div style="text-align:center;">{day.WD}</div>{day.DATE}  {day.HDAY}</div>
+							</div>
+							<!-- BEGIN day.cdh -->
+								<!-- IF day.cdh.EVENT_NAME -->
+									<span class="sday">
+										<!-- IF day.cdh.LINK --><a<!-- ELSE --><span<!-- ENDIF--> class="{day.cdh.EVENTBG}" style="<!-- IF day.cdh.COLOR -->color:#{day.cdh.COLOR};<!-- ENDIF--><!-- IF day.cdh.BCOLOR -->background-color:#{day.cdh.BCOLOR};<!-- ENDIF--><!-- IF day.cdh.BIG -->font-weight:bold;<!-- ENDIF-->"<!-- IF day.cdh.EVENT_TITLE --> title="{day.cdh.EVENT_TITLE}<!-- IF day.cdh.PART -->{day.cdh.TR}{day.cdh.PART}<!-- ENDIF-->"<!-- ENDIF--><!-- IF day.cdh.LINK --> href="{day.cdh.LINK}"<!-- ENDIF--> >
+										{day.cdh.EVENT_NAME}<!-- IF day.cdh.NR --> [{day.cdh.NR}]<!-- ENDIF-->
+										<!-- IF day.cdh.LINK --></a><!-- ELSE --></span><!-- ENDIF-->
+									</span>
+									<span class="kday">
+										<!-- IF day.cdh.LINK --><a<!-- ELSE --><span<!-- ENDIF--> class="{day.cdh.EVENTBG}" style="line-height:2em;<!-- IF day.cdh.COLOR -->color:#{day.cdh.COLOR};<!-- ENDIF--><!-- IF day.cdh.BCOLOR -->background-color:#{day.cdh.BCOLOR};<!-- ENDIF--><!-- IF day.cdh.BIG -->font-weight:bold;<!-- ENDIF-->"<!-- IF day.cdh.LINK --> href="{day.cdh.LINK}"<!-- ENDIF--> >
+										{day.cdh.EVENT_TITLE} <!-- IF day.cdh.NR -->[{day.cdh.NR}]<!-- ENDIF--> 
+										<!-- IF day.cdh.LINK --></a><!-- ELSE --></span><!-- ENDIF-->
+									</span>
+									<br />
+								<!-- ENDIF -->
+							<!-- END day.cdh -->
+						</div>
+					<!-- IF day.I == 6 -->
+						</div>
+						<div class="week">
+					<!-- ENDIF -->
+				<!-- END day -->	
+			</div>
+		<!-- ENDIF -->
+		<!-- IF S_WEEK_OR_NEXT == 2 ||  S_WEEK_OR_NEXT == 3 -->
+			<div class="forabg" style="margin-bottom:4px;font-weight:bold;color:#FFFFFF;">{L_CALENDAR_UPCOMING_DATES}</div>
+			<div class="event">
+				<!-- BEGIN event -->
+					<div class="event-box {event.BG}">
+						
+							<div class="kday">	
+								<div class="day">{event.WD}, {event.DATE}
+									<!-- IF event.HDAY && !event.DATE_TO -->
+										, {event.HDAY}
+									<!-- ENDIF -->
+									<!-- IF event.DATE_TO -->
+										- {event.WD_TO}, {event.DATE_TO}
+									<!-- ENDIF -->
+								</div>
+							</div>
+							<div class="sday">
+								<div class="cal-day">
+								<!-- IF HD -->
+									{event.HDAY}<br />
+								<!-- ENDIF -->
+								{event.WD}<br />{event.DATE}<br />
+							</div>
+						</div>
+
+						<span class="sday">
+							<!-- IF event.LINK --><a<!-- ELSE --><span<!-- ENDIF--> class="{event.EVENTBG}" style="line-height:2em;<!-- IF event.COLOR -->color:#{event.COLOR};<!-- ENDIF--><!-- IF event.BCOLOR -->background-color:#{event.BCOLOR};<!-- ENDIF--><!-- IF event.BIG -->font-weight:bold;<!-- ENDIF-->"<!-- IF event.EVENT_TITLE --> title="{event.EVENT_TITLE}<!-- IF event.PART -->{event.TR}{event.PART}<!-- ENDIF-->"<!-- ENDIF--><!-- IF event.LINK --> href="{event.LINK}"<!-- ENDIF--> >
+							{event.EVENT_NAME}<!-- IF event.NR --> [{event.NR}]<!-- ENDIF-->
+							<!-- IF event.LINK --></a><!-- ELSE --></span><!-- ENDIF-->
+						</span>
+						<span class="kday">
+							<!-- IF event.LINK --><a<!-- ELSE --><span<!-- ENDIF--> class="{event.EVENTBG}" style="line-height:2em;<!-- IF event.COLOR -->color:#{event.COLOR};<!-- ENDIF--><!-- IF event.BCOLOR -->background-color:#{event.BCOLOR};<!-- ENDIF--><!-- IF event.BIG -->font-weight:bold;<!-- ENDIF-->"<!-- IF event.LINK --> href="{event.LINK}"<!-- ENDIF--> >
+							{event.EVENT_TITLE} <!-- IF event.NR -->[{event.NR}]<!-- ENDIF--> 
+							<!-- IF event.LINK --></a><!-- ELSE --></span><!-- ENDIF-->
+						</span>
+						<!-- IF event.DATE_TO -->
+							<div class="sday">
+								<div class="cal-day">{event.WD_TO}<br />{event.DATE_TO}</div>
+							</div>								
+						<!-- ENDIF -->
+					</div>
+					<!-- IF event.BREAK -->
+						</div>
+						<div class="event">
+					<!-- ENDIF -->
+				<!-- END event -->
+			</div>
+			<div style="clear:left"></div>
+		<!-- ENDIF -->
+	</div>
+<!-- ENDIF -->
+<!-- IF CALENDAR_ON_INDEX_OFF -->
+	<div class="navbar" style="margin-bottom:4px;">
+		<!-- IF CALENDAR -->
+			<a class="navbar" style="margin-bottom:4px;" href="{DISPLAY_ACTION}">{L_CALENDAR_T_OFF}</a>
+		<!-- ELSE -->
+			<a class="navbar" style="margin-bottom:4px;" href="{DISPLAY_ACTION}">{L_CALENDAR_T_ON}</a>
+		<!-- ENDIF -->
+	</div>
+<!-- ENDIF -->

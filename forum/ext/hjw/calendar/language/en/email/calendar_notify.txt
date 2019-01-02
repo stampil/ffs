@@ -1,0 +1,10 @@
+Subject: Notification of a new calendar entry - "{EVENT_NAME}".
+
+Hello {USERNAME},
+
+you get this notification because "{AUTHOR}" on "{SITENAME}" has added a new event to the calendar.
+
+You can view the event entry by clicking on the following link:
+{U_CALENDAR_EVENT}
+
+{EMAIL_SIG}

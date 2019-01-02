@@ -1,0 +1,10 @@
+Subject: Notification of a new subscriber entry - "{EVENT_NAME}".
+
+Hello {USERNAME},
+
+you get this notification because "{AUTHOR}" on "{SITENAME}" has made an entry in the participant list.
+
+You can view the event entry by clicking on the following link:
+{U_CALENDAR_EVENT}
+
+{EMAIL_SIG}

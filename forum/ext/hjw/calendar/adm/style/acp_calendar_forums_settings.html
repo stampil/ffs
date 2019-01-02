@@ -1,0 +1,29 @@
+<!-- INCLUDE overall_header.html -->
+	<h1>{L_ACP_CALENDAR_FORUM_SETTINGS}</h1>
+	<p>{L_ACP_CALENDAR_FORUM_SETTINGS_TEXT}</p>
+	<form action="{U_CALENDAR_FORUM}" method="POST">
+		<fieldset class="tabulated">
+			<table class="table1 zebra-table" id="down">
+				<thead>
+					<tr>
+						<th style="text-align:center">{L_FORUMS}</th>
+						<th style="text-align:center">{L_ACP_CALENDAR_EVENTS}</th>
+					</tr>
+				</thead>
+				<tbody>
+					<!-- BEGIN forum -->
+						<tr>
+							<td style="text-align:center;color:{forum.COLOR}">{forum.FORUM}</td>
+							<td style="text-align:center;color:{forum.COLOR}">
+								<!-- IF forum.TYPE == 1 -->
+									<a href="{forum.ID}" style="color:{forum.COLOR};">{forum.TEXT}</a>
+								<!-- ENDIF -->
+							</td>
+						</tr>
+					<!-- END forum -->
+				</tbody>
+			</table>
+			{S_FORM_TOKEN}
+		</fieldset>
+	</form>
+<!-- INCLUDE overall_footer.html -->

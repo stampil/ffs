@@ -1,0 +1,100 @@
+<!-- INCLUDE overall_header.html -->
+	<h1>{L_ACP_CALENDAR_SPECIAL_DAYS}</h1>
+	<p>{L_ACP_CALENDAR_SPECIAL_DAYS_TEXT}</p>
+	<!-- IF S_EDIT_CALENDAR_EVENT -->
+			<form action="{U_MODIFY}" method="POST">
+				<fieldset class="submit-buttons" style="text-align:left;">
+					<legend></legend>
+					<dl style ="margin-bottom:0px;">
+						<dt style="width:200px"><label>{L_ACP_CALENDAR_NAME}</label></dt>
+						<dd style="margin-left:200px;"><input type="text" name="name" size="16" value="{NAME}" /></dd>
+					</dl>
+					<dl style ="margin-bottom:0px;">
+						<dt style="width:200px"><label>{L_ACP_CALENDAR_EASTER_DAYS}</label></dt>
+						<dd style="margin-left:200px;"><input type="text" name="eastern" size="16" value="{EASTERN}" /></dd>
+					</dl>
+					<dl style ="margin-bottom:0px;">
+						<dt style="width:200px"><label>{L_ACP_CALENDAR_DATE}</label></dt>
+						<dd style="margin-left:200px;">
+							<select name="from_day"> 
+								<!-- BEGIN day -->
+									{day.SELECT}
+								<!-- END day -->
+							</select>
+							<select name="from_month"> 
+								<!-- BEGIN month -->
+									{month.SELECT}
+								<!-- END month -->
+							</select>
+						</dd>
+					</dl>
+					<dl style ="margin-bottom:0px;">
+						<dt style="width:200px"><label>{L_ACP_CALENDAR_BIG}</label></dt>
+						<dd style="margin-left:200px;"><input type="checkbox" name="big" <!-- IF BIG == 1 -->checked="checked" <!-- ENDIF -->value="1" /></dd>
+					</dl>
+					<dl style ="margin-bottom:0px;">
+						<dt style="width:200px"><label>{L_ACP_CALENDAR_SHOW}</label></dt>
+						<dd style="margin-left:200px;"><input type="checkbox" name="show_on" <!-- IF SHOW_ON -->checked="checked" <!-- ENDIF -->value="1" /></dd>
+					</dl>
+					<dl>
+						<dt style="width:200px"><label for="color">{L_ACP_CALENDAR_COLOR}</label></dt>
+						<dd style="margin-left:200px;">
+							<input name="color" type="text" id="color" value="{COLOR}" size="6" maxlength="6" />
+							<!-- IF COLOR -->&nbsp;<span style="background-color: #{COLOR}">&nbsp; &nbsp;</span><!-- ENDIF -->&nbsp;&nbsp;<span>
+							[	 <a href="#" id="color_palette_toggle">{L_COLOUR_SWATCH}</a> ]</span>
+							<div id="color_palette_placeholder" style="display: none;" data-orientation="h" data-height="12" data-width="12" data-target="#color"></div>
+						</dd>
+					</dl>
+					<dl>
+						<dt style="width:200px"><label for="bcolor">{L_ACP_CALENDAR_COLOR_B}</label></dt>
+						<dd style="margin-left:200px;">
+							<input name="bcolor" type="text" id="bcolor" value="{BCOLOR}" size="6" maxlength="6" />
+							<!-- IF BCOLOR -->&nbsp;<span style="background-color: #{BCOLOR}">&nbsp; &nbsp;</span><!-- ENDIF -->&nbsp;&nbsp;<span>
+						</dd>
+					</dl>
+					<p class="submit-buttons">
+						<input class="button1" type="submit" name="send" value="{L_ACP_CALENDAR_SEND}" />&nbsp;
+						<input class="button2" type="reset" id="reset" name="reset" value="{L_ACP_CALENDAR_RESET}" />
+					</p>
+					{S_FORM_TOKEN}
+				</fieldset>
+			</form>
+	<!-- ELSE -->
+		<form id="acp_events" method="post" action="{U_ACTION}">
+			<fieldset class="tabulated">
+
+				<table class="table1 zebra-table" id="down">
+					<thead>
+						<tr>
+							<th style="text-align:center">{L_ACP_CALENDAR_NAME}</th>
+							<th style="text-align:center">{L_ACP_CALENDAR_EASTER_DAYS}</th>
+							<th style="text-align:center">{L_ACP_CALENDAR_DATE}</th>
+							<th style="text-align:center">{L_ACP_CALENDAR_SHOW}</th>
+							<th style="text-align:center">{L_ACTION}</th>
+						</tr>
+					</thead>
+					<tbody>
+						<!-- BEGIN calendar_special_day -->
+							<tr>
+								<td style="text-align:center;color:#{calendar_special_day.COLOR};<!-- IF calendar_special_day.BCOLOR -->background-color:#{calendar_special_day.BCOLOR};border-radius:13px;padding:0 3px;<!-- ENDIF-->">{calendar_special_day.NAME}</td>
+								<td style="text-align:center;color:#{calendar_special_day.COLOR};<!-- IF calendar_special_day.BCOLOR -->background-color:#{calendar_special_day.BCOLOR};border-radius:13px;padding:0 3px;<!-- ENDIF-->">{calendar_special_day.EASTERN}</td>
+								<td style="text-align:center;color:#{calendar_special_day.COLOR};<!-- IF calendar_special_day.BCOLOR -->background-color:#{calendar_special_day.BCOLOR};border-radius:13px;padding:0 3px;<!-- ENDIF-->">{calendar_special_day.DATE}</td>
+								<td style="text-align:center;color:#{calendar_special_day.COLOR};<!-- IF calendar_special_day.BCOLOR -->background-color:#{calendar_special_day.BCOLOR};border-radius:13px;padding:0 3px;<!-- ENDIF-->">{calendar_special_day.SHOW_ON}</td>
+								<td class="actions" style="text-align:center"><a href="{calendar_special_day.U_EDIT}">{ICON_EDIT}</a> <a href="{calendar_special_day.U_DELETE}" data-ajax="row_delete">{ICON_DELETE}</a></td>
+							</tr>
+						<!-- BEGINELSE -->
+							<tr class="row3">
+								<td colspan="2">{L_ACP_NO_ITEMS}</td>
+							</tr>
+						<!-- END calendar_special_day -->
+					</tbody>
+				</table>
+
+				<p class="quick" style="max-width:500px;text-align:center;">
+					<input class="button2" name="submit" type="submit" value="{L_ACP_CALENDAR_SPECIAL_DAY_CREATE}" />
+				</p>
+				{S_FORM_TOKEN}
+			</fieldset>
+		</form>
+	<!-- ENDIF -->
+<!-- INCLUDE overall_footer.html -->
