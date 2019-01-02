@@ -10,7 +10,7 @@
     $user->session_begin();
     $auth->acl($user->data);
     $user->setup();
-	
+	$request->enable_super_globals();
 	//---------------------------------------------------------------------------
 		$isauth_admin = 0;
 		$isauth_read = 0;
@@ -263,7 +263,7 @@ $template->set_filenames(array(
 
     make_jumpbox(append_sid("{$phpbb_root_path}viewforum.$phpEx"));
     page_footer();
-
+$request->disable_super_globals();
     
 
 ?>
