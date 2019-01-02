@@ -834,8 +834,8 @@ function calendar_display_event()
 		$end_date_txt = $user->format_date($event_data['event_end_time'], $disp_date_time_format, true);
 
 		// translate event start and end time into user's timezone
-		$event_start = $event_data['event_start_time'] + $user->timezone + $user->dst;
-		$event_end = $event_data['event_end_time'] + $user->timezone + $user->dst;
+		$event_start = $event_data['event_start_time']; /*+ $user->timezone + $user->dst*/;
+		$event_end = $event_data['event_end_time'];/* + $user->timezone + $user->dst*/;
 
 		if( $event_data['event_all_day'] == 1 )
 		{
@@ -844,7 +844,7 @@ function calendar_display_event()
 			{
 				list($eday['eday_day'], $eday['eday_month'], $eday['eday_year']) = explode('-', $event_data['event_day']);
 
-				$event_days_time = gmmktime(0,0,0,$eday['eday_month'], $eday['eday_day'], $eday['eday_year'])- $user->timezone - $user->dst;
+				$event_days_time = gmmktime(0,0,0,$eday['eday_month'], $eday['eday_day'], $eday['eday_year']); /*- $user->timezone - $user->dst;*/
 				$start_date_txt = $user->format_date($event_days_time, $disp_date_format, true);
 				$date['day'] = $eday['eday_day'];
 				$date['month_no'] = $eday['eday_month'];
