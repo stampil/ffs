@@ -4387,19 +4387,28 @@ function page_header($page_title = '', $display_online_list = false, $item_id = 
         //Récupération infos Calendrier
 	$time_now = time()-2*3600;
 	
-	$sql = "SELECT * FROM phpbb_calendar_events INNER JOIN phpbb_calendar_event_types ON phpbb_calendar_events.etype_id = phpbb_calendar_event_types.etype_id WHERE phpbb_calendar_events.event_start_time >= $time_now ORDER BY phpbb_calendar_events.event_start_time ASC LIMIT 7";
+	$sql = "SELECT * FROM `phpbb_calendar` c join phpbb_calendar_event e ON c.event_id=e.id
+
+where date_from >= now() and canceled=0 order by date_from asc limit 7;";
 	$result = $db->sql_query($sql);
 	while($data = $db->sql_fetchrow($result))
 	{
-		$date = date('d',$data['event_start_time']).'/'.date('m',$data['event_start_time']).'/'.date('y',$data['event_start_time']);
-		$heure = date('H',$data['event_start_time'])+2 .':'.date('i',$data['event_start_time']);
+		//$date = date('d',$data['event_start_time']).'/'.date('m',$data['event_start_time']).'/'.date('y',$data['event_start_time']);
+		//$heure = date('H',$data['event_start_time'])+2 .':'.date('i',$data['event_start_time']);
+            $request->enable_super_globals();
+            $urlsess='';
+            if($_GET['sid']){
+                $urlsess = '&sid='.$_GET['sid'];
+            }
+            $request->disable_super_globals();
 		$template->assign_block_vars('events', array(
-			'DATE' 		=> $date,
-			'HEURE'		=> $heure,
-			'COLOR'		=> $data['etype_color'],
-			'TYPE'		=> $data['etype_display_name'],
-			'ID'		=> $data['event_id'],
-			'EVENT' 	=> $data['event_subject']
+			'DATE' 		=> preg_replace('/[0-9]{2}([0-9]{2})-([0-9]{2})-([0-9]{2})/',"$3/$2/$1",$data['date_from']),
+			'HEURE'		=> '21h',
+			'COLOR'		=> $data['color'],
+			'TYPE'		=> $data['event'],
+			'ID'		=> $data['post_id'],
+                        'URL'           => 'viewtopic.php?p='.$data['post_id'].$urlsess,
+			'EVENT' 	=> $data['event_name']
 		));
 	}
         
