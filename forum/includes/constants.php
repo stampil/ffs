@@ -314,3 +314,11 @@ define('WORDS_TABLE',				$table_prefix . 'words');
 define('ZEBRA_TABLE',				$table_prefix . 'zebra');
 
 // Additional tables
+
+define('CALENDAR_CONFIG_TABLE',		$table_prefix . 'calendar_config');
+define('CALENDAR_EVENTS_TABLE',		$table_prefix . 'calendar_events');
+define('CALENDAR_EVENT_TYPES_TABLE',	$table_prefix . 'calendar_event_types');
+define('CALENDAR_RSVP_TABLE',		$table_prefix . 'calendar_rsvps');
+define('CALENDAR_RECURRING_EVENTS_TABLE',	$table_prefix . 'calendar_recurring_events');
+define('CALENDAR_EVENTS_WATCH',		$table_prefix . 'calendar_events_watch');
+define('CALENDAR_WATCH',			$table_prefix . 'calendar_watch');

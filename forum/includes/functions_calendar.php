@@ -145,7 +145,7 @@ function calendar_display_month()
 		//highlight current day
 		$test_start_hi_time = mktime( 0,0,0,$date['month_no'], $j, $date['year']) + date('Z');
 		$test_end_hi_time = $test_start_hi_time + 86399;
-		$test_hi_time = time() + $user->timezone + $user->dst;
+		$test_hi_time = time(); /*+ $user->timezone + $user->dst;*/
 
 		if( ($test_start_hi_time <= $test_hi_time) &&
 		    ($test_end_hi_time >= $test_hi_time))
@@ -166,7 +166,7 @@ function calendar_display_month()
 		if ( $user_can_view_events )
 		{
 			//find any events on this day
-			$start_temp_date = gmmktime(0,0,0,$date['month_no'], $j, $date['year'])  - $user->timezone - $user->dst;
+			$start_temp_date = gmmktime(0,0,0,$date['month_no'], $j, $date['year']) ;/* - $user->timezone - $user->dst*/;
 			$end_temp_date = $start_temp_date + 86399;
 
 			if( $disp_events_only_on_start == 0 )
@@ -1990,7 +1990,7 @@ function init_calendar_data()
 	$date['month_no'] = request_var('calM', '');
 	$date['year'] = request_var('calY', '');
 
-	$temp_now_time = time() + $user->timezone + $user->dst;
+	$temp_now_time = time(); /*+ $user->timezone + $user->dst;*/
 
 	if( $date['day'] == "" )
 	{

@@ -31,7 +31,7 @@ $user->setup('calendar');
 // Is the user able to view ANY events?
 if ( !$auth->acl_get('u_calendar_view_events') )
 {
-	trigger_error( 'NO_AUTH_OPERATION' );
+	//trigger_error( 'NO_AUTH_OPERATION' );
 }
 
 if( !$user->data['is_bot'] && $user->data['user_id'] != ANONYMOUS )
