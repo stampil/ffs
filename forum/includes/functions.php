@@ -4411,7 +4411,7 @@ where date_from >= now() and canceled=0 order by date_from asc limit 7;";
                 $title="";
                 while($data3 = $db->sql_fetchrow($result3))
                 {
-                    $title.=' '.$data3["username_clean"]." (".$data3["number"].")\n";
+                    $title.=$data3["username_clean"]." (".$data3["number"].")\n";
                 
                 }
                 
