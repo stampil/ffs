@@ -4388,7 +4388,6 @@ function page_header($page_title = '', $display_online_list = false, $item_id = 
 	$time_now = time()-2*3600;
 	
 	$sql = "SELECT * FROM `phpbb_calendar` c join phpbb_calendar_event e ON c.event_id=e.id
-
 where date_from >= now() and canceled=0 order by date_from asc limit 7;";
 	$result = $db->sql_query($sql);
 	while($data = $db->sql_fetchrow($result))
@@ -4401,12 +4400,18 @@ where date_from >= now() and canceled=0 order by date_from asc limit 7;";
                 $urlsess = '&sid='.$_GET['sid'];
             }
             $request->disable_super_globals();
+            
+            	$sql = "SELECT SUM(number) as nb FROM `phpbb_calendar_participants` 
+                where post_id=".$data['post_id'];
+                $result2 = $db->sql_query($sql);
+                $data2 = $db->sql_fetchrow($result2);
 		$template->assign_block_vars('events', array(
 			'DATE' 		=> preg_replace('/[0-9]{2}([0-9]{2})-([0-9]{2})-([0-9]{2})/',"$3/$2/$1",$data['date_from']),
 			'HEURE'		=> '21h',
 			'COLOR'		=> $data['color'],
 			'TYPE'		=> $data['event'],
 			'ID'		=> $data['post_id'],
+                        'NB'            => $data2['nb'],
                         'URL'           => 'viewtopic.php?p='.$data['post_id'].$urlsess,
 			'EVENT' 	=> $data['event_name']
 		));
