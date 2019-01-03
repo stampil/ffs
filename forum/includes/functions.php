@@ -4409,9 +4409,16 @@ where date_from >= now() and canceled=0 order by date_from asc limit 7;";
                 $sql ="SELECT username_clean, number FROM `phpbb_calendar_participants` p join phpbb_users u ON p.user_id = u.user_id WHERE p.participants='yes' AND post_id=".$data['post_id'];
                 $result3 = $db->sql_query($sql);
                 $title="";
+                
                 while($data3 = $db->sql_fetchrow($result3))
                 {
-                    $title.=$data3["username_clean"]." (".$data3["number"].")\n";
+                    $invit="";
+                    if($data3["number"]>1){
+                        $data3["number"]--;
+                        $invit="(+".$data3["number"]." autre".($data3["number"]>1?'s':'').' )';
+
+                    }
+                    $title.="👨 : ".$data3["username_clean"]." ".$invit."\n";
                 
                 }
                 
