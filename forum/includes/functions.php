@@ -4401,10 +4401,22 @@ where date_from >= now() and canceled=0 order by date_from asc limit 7;";
             }
             $request->disable_super_globals();
             
-            	$sql = "SELECT SUM(number) as nb FROM `phpbb_calendar_participants` 
-                where post_id=".$data['post_id'];
+            	$sql = "SELECT SUM(number) as nb FROM `phpbb_calendar_participants` WHERE participants='yes'
+                AND post_id=".$data['post_id'];
                 $result2 = $db->sql_query($sql);
                 $data2 = $db->sql_fetchrow($result2);
+                
+                $sql ="SELECT username_clean, number FROM `phpbb_calendar_participants` p join phpbb_users u ON p.user_id = u.user_id WHERE p.participants='yes' AND post_id=".$data['post_id'];
+                $result3 = $db->sql_query($sql);
+                $title="";
+                while($data3 = $db->sql_fetchrow($result3))
+                {
+                    $title.=' '.$data3["username_clean"]." (".$data3["number"].")\n";
+                
+                }
+                
+                
+                
 		$template->assign_block_vars('events', array(
 			'DATE' 		=> preg_replace('/[0-9]{2}([0-9]{2})-([0-9]{2})-([0-9]{2})/',"$3/$2/$1",$data['date_from']),
 			'HEURE'		=> '21h',
@@ -4413,6 +4425,7 @@ where date_from >= now() and canceled=0 order by date_from asc limit 7;";
 			'ID'		=> $data['post_id'],
                         'NB'            => $data2['nb'],
                         'URL'           => 'viewtopic.php?p='.$data['post_id'].$urlsess,
+                        'TITLE'         => $title,
 			'EVENT' 	=> $data['event_name']
 		));
 	}
