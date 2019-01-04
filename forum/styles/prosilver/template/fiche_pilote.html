@@ -21,7 +21,11 @@
 				</div>
 				<!-- IF FFS == 12 -->
 				<div style="position:relative; float:left; width:300px; margin-left:30px; padding-top:10px;"><span style="font-weight:bold; color:#330099; font-size:1.4em;">{PSEUDO} - FFS 1/2</span><br /><br />
-				<!-- ELSE -->
+				<!-- ELSEIF FFS == 3 -->
+                                <div style="position:relative; float:left; width:300px; margin-left:30px; padding-top:10px;"><span style="font-weight:bold; color:#330099; font-size:1.4em;">{PSEUDO} - FFS XX</span><br /><br />
+                                <!-- ELSEIF FFS == 131 -->
+                                <div style="position:relative; float:left; width:300px; margin-left:30px; padding-top:10px;"><span style="font-weight:bold; color:#330099; font-size:1.4em;">{PSEUDO} - FFS 131</span><br /><br />
+                                <!-- ELSE -->
 				<div style="position:relative; float:left; width:300px; margin-left:30px; padding-top:10px;"><span style="font-weight:bold; color:#330099; font-size:1.4em;">{PSEUDO} - FFS 0{FFS}</span><br /><br />
 				<!-- ENDIF -->
 					<table>
@@ -47,6 +51,8 @@
 						Programme de formation de la FFS 1/2 Cigognes
 					<!-- ELSEIF FFS == 131 -->
 						Programme de formation de la FFS-131
+                                        <!-- ELSEIF FFS == 3 -->
+						Programme de formation de la FFS-XX
 					<!-- ELSE -->
 						Programme de formation de la FFS-0{FFS}
 					<!-- ENDIF -->
@@ -78,6 +84,8 @@
 						Programme de formation de la FFS 1/2 Cigognes
 					<!-- ELSEIF FFS == 131 -->
 						Programme de formation de la FFS-131
+                                         <!-- ELSEIF FFS == 3 -->
+						Programme de formation de la FFS-XX
 					<!-- ELSE -->
 						Programme de formation de la FFS-0{FFS2}
 					<!-- ENDIF -->
@@ -110,6 +118,8 @@
 						Programme de formation de la FFS 1/2 Cigognes
 					<!-- ELSEIF FFS == 131 -->
 						Programme de formation de la FFS-131
+                                        <!-- ELSEIF FFS == 3 -->
+						Programme de formation de la FFS-XX
 					<!-- ELSE -->
 						Programme de formation de la FFS-0{FFS3}
 					<!-- ENDIF -->
