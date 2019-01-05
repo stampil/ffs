@@ -40,7 +40,7 @@ a:hover { color: #D31141; }
 }
 
 .forumbg .header a:hover, .forabg .header a:hover, th a:hover {
-	color: #A8D8FF;
+	color: #FFFFFF;
 }
 
 /* Notification mark read link */
@@ -90,16 +90,12 @@ a:hover { color: #D31141; }
 }
 
 .headerbar, .forumbg {
-	background-color: #12A3EB;
-	background-image: -webkit-linear-gradient(top, #6ACEFF 0%, #0076B1 2px, #12A3EB 92px, #12A3EB 100%);
-	background-image: linear-gradient(to bottom, #6ACEFF 0%,#0076B1 2px,#12A3EB 92px,#12A3EB 100%);
+	background-color: #000000;
 	background-repeat: repeat-x;
 }
 
 .forabg {
-	background-color: #0076B1;
-	background-image: -webkit-linear-gradient(top, #6ACEFF 0%, #12A3EB 2px, #0076B1 92px, #0076B1 100%);
-	background-image: linear-gradient(to bottom, #6ACEFF 0%,#12A3EB 2px,#0076B1 92px,#0076B1 100%);
+	background-color: #000000;
 	background-repeat: repeat-x;
 }
 
@@ -326,7 +322,7 @@ ul.forums {
 }
 
 ul.topiclist li {
-	color: #4C5D77;
+	color: #FFFFFF;
 }
 
 ul.topiclist dd {
