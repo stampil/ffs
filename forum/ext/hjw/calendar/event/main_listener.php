@@ -377,6 +377,13 @@ class main_listener implements EventSubscriberInterface
 									->setTime($r[3],$r[4],$r[5])
 									->format($date_format, true);
 
+								$FG='black';
+								// <!-- ModifA.Giraudi: New classe for calendar entry Yes No Maybe -->
+								if (strtoupper($part_row['participants'])=='YES') $FG='green';
+								if (strtoupper($part_row['participants'])=='NO') $FG='red';
+								//	<!-- end of modif -->
+								
+								
 								$p_id['row']['LIST'][] = array(
 									'PARTICIPANTS_USER'			=> $user_row['username'],
 									'PARTICIPANTS_USER_LINK'	=> append_sid($this->phpbb_root_path . 'memberlist.php?mode=viewprofile&u=' . $user_row['user_id']),
@@ -385,6 +392,9 @@ class main_listener implements EventSubscriberInterface
 									'PARTICIPANTS_PART'			=> $this->user->lang['CALENDAR_'.strtoupper($part_row['participants']).''],
 									'PARTICIPANTS_COMMENTS'		=> $part_row['comments'],
 									'PARTICIPANTS_DATE'			=> $p_date,
+									// <!-- ModifA.Giraudi: New classe for calendar entry Yes No Maybe -->
+									'PARTICIPANTS_FG_COLOUR'	=> $FG,
+									//	<!-- end of modif -->
 								);
 							}
 							$this->db->sql_freeresult($user_result);
