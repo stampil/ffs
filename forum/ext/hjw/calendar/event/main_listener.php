@@ -348,7 +348,7 @@ class main_listener implements EventSubscriberInterface
 							'EVENT_DATE'		=>	$pd,
 							'U_PARTICIPANTS'	=>	append_sid($this->phpbb_root_path . 'viewtopic.php?f='.$forum_id.'&amp;p='.$post_id.'#p'.$post_id),
 						);
-						$sql = 'SELECT *
+						$sql = 'SELECT * ORDER BY participants
 							FROM ' . CALENDAR_PARTICIPANTS_TABLE . '
 								WHERE post_id = ' . $post_id . "
 									AND event_date = '" . $pd . "'";
