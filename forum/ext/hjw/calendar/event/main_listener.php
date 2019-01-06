@@ -49,16 +49,16 @@ class main_listener implements EventSubscriberInterface
 
 	/** @var \phpbb\request\request_interface */
 	protected $request;
-	
+
 	/** @var string php file extension */
 	protected $php_ext;
 
 	/** @var string phpbb root path */
 	protected $phpbb_root_path;
- 
+
 	/** @var \phpbb\event\dispatcher_interface */
-    protected $phpbb_dispatcher;	
-	
+    protected $phpbb_dispatcher;
+
 	/**
 	* Constructor
 	*
@@ -68,7 +68,7 @@ class main_listener implements EventSubscriberInterface
 	* @param \phpbb\user				$this->user
 	*/
 
-	public function __construct(\phpbb\config\config $config, \phpbb\db\driver\driver_interface $db, \phpbb\controller\helper $helper, 
+	public function __construct(\phpbb\config\config $config, \phpbb\db\driver\driver_interface $db, \phpbb\controller\helper $helper,
 								\phpbb\auth\auth $auth, \phpbb\template\template $template, \phpbb\user $user, \phpbb\request\request $request,
 								\phpbb\event\dispatcher_interface $phpbb_dispatcher, $phpbb_root_path, $phpEx )
 	{
@@ -110,7 +110,7 @@ class main_listener implements EventSubscriberInterface
 	}
 
 	public function display_participants_list($event)
-	{ 
+	{
 		$post_id = $event['row']['post_id'];
 		$forum_id = $event['row']['forum_id'];
 		$topic_id = $event['row']['topic_id'];
@@ -153,7 +153,7 @@ class main_listener implements EventSubscriberInterface
 				$cal_date .= ' - ' . $t[2]. '.' . $t[1] . '.' . $t[0];
 			}
 			$pd = '';
-			
+
 			$sql = 'SELECT *
 				FROM ' . CALENDAR_EVENT_TABLE . '
 					WHERE id = ' . $event_row['event_id'];
@@ -201,7 +201,7 @@ class main_listener implements EventSubscriberInterface
 							$j = 0;
 							$nr = 0;
 							$option = '';
-							
+
 							if($repeat_dm)
 							{
 								while (mktime(12,0,0,$f[1],$f[2]+($i*$repeat_day_number),$f[0]) <= $end && $j<20)
@@ -271,7 +271,7 @@ class main_listener implements EventSubscriberInterface
 									'U_ACTION'				=>	'./viewtopic.php?p=' . $post_id . '#p' . $post_id,
 								);
 							}
-		
+
 							if($repeat_dm == 0)
 							{
 								while (mktime(12,0,0,$f[1]+($i*$repeat_month_number),$f[2],$f[0]) <= $end && $j<20)
@@ -326,14 +326,14 @@ class main_listener implements EventSubscriberInterface
 						$number['no']	= 0;
 						$number['mb']	= 0;
 						if($pd)
-						{	
+						{
 							$d = explode('-',$pd);
 							$link = 'calendar/?month=' . $d[1] . '&year=' . $d[0];
 						}
 						else
 						{
 							$link = 'calendar/?month=' . $f[1] . '&year=' . $f[0];
-						
+
 						}
 						if(!$this->config['enable_mod_rewrite'])
 						{
@@ -348,10 +348,11 @@ class main_listener implements EventSubscriberInterface
 							'EVENT_DATE'		=>	$pd,
 							'U_PARTICIPANTS'	=>	append_sid($this->phpbb_root_path . 'viewtopic.php?f='.$forum_id.'&amp;p='.$post_id.'#p'.$post_id),
 						);
-						$sql = 'SELECT * ORDER BY participants
+						$sql = 'SELECT *
 							FROM ' . CALENDAR_PARTICIPANTS_TABLE . '
 								WHERE post_id = ' . $post_id . "
-									AND event_date = '" . $pd . "'";
+									AND event_date = '" . $pd . "'" ;
+						$sql .= ' ORDER BY participants DESC';
 						$result = $this->db->sql_query($sql);
 						while($part_row = $this->db->sql_fetchrow($result))
 						{
@@ -365,9 +366,9 @@ class main_listener implements EventSubscriberInterface
 								$r	= explode('-',$part_row['date'].'-0-0');
 								date_default_timezone_set($this->config['board_timezone']);
 								$d = mktime($r[3], $r[4], $r[5], $r[1], $r[2], $r[0]);
-								$a = date("Y-m-j-H-i-s", $d);					
+								$a = date("Y-m-j-H-i-s", $d);
 								date_default_timezone_set($this->user->data['user_timezone']);
-								$m = date("Y-m-j-H-i-s", $d);					
+								$m = date("Y-m-j-H-i-s", $d);
 								date_default_timezone_set($this->config['board_timezone']);
 
 								$r	= explode('-',$m);
@@ -382,8 +383,8 @@ class main_listener implements EventSubscriberInterface
 								if (strtoupper($part_row['participants'])=='YES') $FG='green';
 								if (strtoupper($part_row['participants'])=='NO') $FG='red';
 								//	<!-- end of modif -->
-								
-								
+
+
 								$p_id['row']['LIST'][] = array(
 									'PARTICIPANTS_USER'			=> $user_row['username'],
 									'PARTICIPANTS_USER_LINK'	=> append_sid($this->phpbb_root_path . 'memberlist.php?mode=viewprofile&u=' . $user_row['user_id']),
@@ -424,17 +425,17 @@ class main_listener implements EventSubscriberInterface
 	}
 
 	public function calendar_on_header($event)
-	{ 
+	{
 		global $weekday, $wday, $c_event, $c_date, $user, $c_event, $c_c, $c_from, $c_to, $c_name, $c_link, $c_part, $c_nr, $c_title, $c_color, $c_bcolor, $c_big, $c_canceled;
 
 		$dc = $this->request->variable('dc','');
 		$sid = $this->request->variable('sid','');
 		$c_c = -1;
-		
+
 		$c_from		= array();
 		$c_to		= array();
 		$c_name		= array();
-		$c_link		= array();				
+		$c_link		= array();
 		$c_part		= array();
 		$c_nr		= array();
 		$c_title	= array();
@@ -442,7 +443,7 @@ class main_listener implements EventSubscriberInterface
 		$c_bcolor	= array();
 		$c_big		= array();
 		$c_canceled	= array();
-		
+
 		$calendar	= true;
 
 		if($this->config['hjw_calendar_on_index_off'])
@@ -455,7 +456,7 @@ class main_listener implements EventSubscriberInterface
 				$url = preg_replace ('/' . $s . '/', '', $url);
 				$s = '\&amp;sid=' . $sid;
 				$url = preg_replace ('/' . $s . '/', '', $url);
-			}	
+			}
 			$url = preg_replace('/\?dc=off/','',$url);
 			$url = preg_replace('/\?dc=on/','',$url);
 			$url = preg_replace('/&amp;dc=off/','',$url);
@@ -474,7 +475,7 @@ class main_listener implements EventSubscriberInterface
 			{
 				$dc = 'on';
 			}
-		
+
 			if ($dc == 'on')
 			{
 				$calendar	= true;
@@ -504,7 +505,7 @@ class main_listener implements EventSubscriberInterface
 		$this->template->assign_vars(array(
 			'CALENDAR'				=> $calendar,
 		));
-		
+
 		include($this->root_path . 'includes/constants' . $this->phpex);
 		$calendar_link	=	$this->helper->route('hjw_calendar_controller');
 
@@ -516,7 +517,7 @@ class main_listener implements EventSubscriberInterface
 		{
 			$version = '3.2';
 		}
-		
+
 		$football = 0;
 		$sql = 'SELECT *
 			FROM ' . EXT_TABLE . '
@@ -529,15 +530,15 @@ class main_listener implements EventSubscriberInterface
 				$football = $this->config['hjw_calendar_football'];
 			}
 		}
-		
+
 		$this->template->assign_vars(array(
-				'U_CALENDAR'				=> $calendar_link,	
+				'U_CALENDAR'				=> $calendar_link,
 				'S_WEEK_OR_NEXT'			=> $this->config['hjw_calendar_week_or_next'],
 				'S_WEEK_ON_INDEX'			=> $this->config['hjw_calendar_week_on_index'],
 				'S_BIRTHDAY_ON_CALENDAR'	=> $this->config['hjw_calendar_birthday_on_calendar'],
 				'S_CALENDAR_FOR_GUESTS'		=> $this->config['hjw_calendar_for_guests'],
 				'VERSION'					=> $version,
-			));	
+			));
 
 		if ($calendar == true)
 		{
@@ -551,9 +552,9 @@ class main_listener implements EventSubscriberInterface
 				{
 					date_default_timezone_set($this->config['board_timezone']);
 				}
-				$t_day   = $day   = date("j"); 
-				$t_month = $month = date("n"); 
-				$t_year  = $year  = date("Y"); 
+				$t_day   = $day   = date("j");
+				$t_month = $month = date("n");
+				$t_year  = $year  = date("Y");
 
 				include($this->root_path . 'includes/special_days' . $this->phpex);
 				$c_days = ($this->config['hjw_calendar_number_of_weeks']*7)-1;
@@ -587,14 +588,14 @@ class main_listener implements EventSubscriberInterface
 				$count_event = 0;
 				$count_event_max = 10 *  $this->config['hjw_calendar_number_of_weeks'];
 				$sql = 'SELECT *
-					FROM ' . CALENDAR_TABLE . " 
-						WHERE date_from >= '" . date("Y-m-d") . "' 
-							OR 
+					FROM ' . CALENDAR_TABLE . "
+						WHERE date_from >= '" . date("Y-m-d") . "'
+							OR
 								date_to >= '" . date("Y-m-d") . "'
-									OR 
+									OR
 										date_from <= '" . date("Y-m-d") . "'
-											AND 
-												date_to = '0000-00-00' AND calendar_repeat = 1 
+											AND
+												date_to = '0000-00-00' AND calendar_repeat = 1
 					ORDER by date_from";
 
 				$event_result = $this->db->sql_query($sql);
@@ -649,18 +650,18 @@ class main_listener implements EventSubscriberInterface
 												$next	= mktime(12,0,0,$new_month,$wd,date("Y",$start));
 											}
 										}
-										if (($next) >= date($date)) 
+										if (($next) >= date($date))
 										{
 											$upcoming['date_from'] =  date("Y-m-d", $next);
 											upcoming_events($upcoming);
 											$count++;
 										}
-							
-							
+
+
 									}
 								}
 								else
-								{		
+								{
 									upcoming_events($upcoming);
 								}
 							}
@@ -670,8 +671,8 @@ class main_listener implements EventSubscriberInterface
 				$sql = 'SELECT *
 					FROM ' . CALENDAR_EVENT_LIST_TABLE . "
 						WHERE date_from >= '" . date("Y-m-d") . "'
-							OR 
-								date_to >= '" . date("Y-m-d") . "' 
+							OR
+								date_to >= '" . date("Y-m-d") . "'
 									ORDER by date_from";
 				$event_result = $this->db->sql_query($sql);
 				while (($event_row = $this->db->sql_fetchrow($event_result)) && ($count_event < $count_event_max))
@@ -700,7 +701,7 @@ class main_listener implements EventSubscriberInterface
 					{
 						$c_title[$c_c]	.= ' - ' . $description;
 					}
-					
+
 					$c_link[$c_c]	= $link;
 					$c_part[$c_c]	= '';
 					$c_nr[$c_c]		= '';
@@ -709,13 +710,13 @@ class main_listener implements EventSubscriberInterface
 					$c_bcolor[$c_c]	= $bcolor;
 					$c_canceled[$c_c]		= 0;
 				}
-			
+
 				$sql = 'SELECT *
 					FROM ' . CALENDAR_EVENT_LIST_TABLE . "
 						WHERE date_from LIKE '0000-%'
 							OR anniversary = 1";
 				$event_result = $this->db->sql_query($sql);
-				while ($event_row = $this->db->sql_fetchrow($event_result)) 
+				while ($event_row = $this->db->sql_fetchrow($event_result))
 				{
 					$appointment	= $event_row['appointment'];
 					$description	= $event_row['description'];
@@ -897,7 +898,7 @@ class main_listener implements EventSubscriberInterface
 			}
 		}
 	}
-	
+
 
 	public function modify_participants_list()
 	{
@@ -923,11 +924,11 @@ class main_listener implements EventSubscriberInterface
 					'user_id',
 				);
 				extract($this->phpbb_dispatcher->trigger_event('hjw.calendar.viewtopic.modify_participants_list', compact($vars)));
-				
+
 				$sql = 'SELECT * from ' . CALENDAR_PARTICIPANTS_TABLE . "
 					WHERE post_id = " . $sql_ary['POST_ID'] . "
 						AND event_date = '" . $pd . "'
-							AND user_id = " . $user_id; 
+							AND user_id = " . $user_id;
 				$result = $this->db->sql_query($sql);
 				$row = $this->db->sql_fetchrow($result);
 				if ($row)
@@ -942,12 +943,12 @@ class main_listener implements EventSubscriberInterface
 				}
 				else
 				{
-					$sql = 'INSERT INTO ' . CALENDAR_PARTICIPANTS_TABLE . ' ' . $this->db->sql_build_array('INSERT', $sql_ary);	
-					
+					$sql = 'INSERT INTO ' . CALENDAR_PARTICIPANTS_TABLE . ' ' . $this->db->sql_build_array('INSERT', $sql_ary);
+
 					$notify = 'calendar_participants';
 				}
 				$result = $this->db->sql_query($sql);
-				
+
 				if($this->config['hjw_calendar_notify_participating'] == true)
 
 				{
@@ -958,14 +959,14 @@ class main_listener implements EventSubscriberInterface
 	}
 
 	public function calendar($event)
-	{ 
+	{
 		$mode = $this->request->variable('mode','');
 		if($mode != 'quote')
 		{
 			include($this->root_path . 'includes/constants' . $this->phpex);
 			$post_id = $event['post_id'];
 			$forum_id = $event['forum_id'];
-					
+
 			$post = $event['page_data'];
 			$post['SUBJECT'] = $this->request->variable('subject', $post['SUBJECT'], true);
 			$post['MESSAGE'] = $this->request->variable('message', $post['MESSAGE'], true);
@@ -1012,7 +1013,7 @@ class main_listener implements EventSubscriberInterface
 					{
 						$this->template->assign_vars( array(
 							'CALENDAR_ALLOWED'			=> true,
-						));	
+						));
 
 						$month_name = array(
 							1 => $this->user->lang['datetime']['January'],
@@ -1078,7 +1079,7 @@ class main_listener implements EventSubscriberInterface
 								$to_year	= $r[0];
 								$to_month 	= $r[1];
 								$to_day		= $r[2];
-							
+
 								$calendar_repeat				= $row['calendar_repeat'];
 								$calendar_repeat_dm				= $row['repeat_dm'];
 								$calendar_repeat_day_number		= $row['repeat_day_number'];
@@ -1090,7 +1091,7 @@ class main_listener implements EventSubscriberInterface
 
 						$event_id	= $this->request->variable('event', $event_id);
 						$event_name	= $this->request->variable('event_name', $event_name);
-					
+
 						$from_day	= str_pad($this->request->variable('from_day',	$from_day),		2 ,'0', STR_PAD_LEFT);
 						$from_month	= str_pad($this->request->variable('from_month',$from_month),	2 ,'0', STR_PAD_LEFT);
 						$from_year	= str_pad($this->request->variable('from_year',	$from_year),	4 ,'0', STR_PAD_LEFT);
@@ -1099,7 +1100,7 @@ class main_listener implements EventSubscriberInterface
 						$to_year	= str_pad($this->request->variable('to_year',	$to_year),		4 ,'0', STR_PAD_LEFT);
 						$from		= $from_year.'-'.$from_month.'-'.$from_day;
 						$to			= $to_year.'-'.$to_month.'-'.$to_day;
-						
+
 						$calendar_repeat				= $this->request->variable('calendar_repeat', $calendar_repeat);
 						$calendar_repeat_dm				= $this->request->variable('calendar_repeat_dm', $calendar_repeat_dm);
 						$calendar_repeat_day_number		= $this->request->variable('calendar_repeat_day_number', $calendar_repeat_day_number);
@@ -1154,7 +1155,7 @@ class main_listener implements EventSubscriberInterface
 						{
 							$cc1 = ' checked="checked" ';
 						}
-						
+
 						$this->template->assign_vars(array(
 							'CALENDAR_TAB'					=> $this->config['hjw_calendar_tab'],
 							'EVENT_NAME' 					=> $event_name,
@@ -1167,54 +1168,54 @@ class main_listener implements EventSubscriberInterface
 							'CRWD'							=> $crwd,
 							'CC0'							=> $cc0,
 							'CC1'							=> $cc1,
-						));	
+						));
 
 						$this->template->assign_block_vars('from_day', array(
 							'SELECT' =>'<option value=" ">'.$this->user->lang['DAY'].'</option>',
-						));	
+						));
 
 						for ($i=1;$i<=31;$i++)
 						{
-							$s='';if ($i == $from_day) $s=' selected="selected"';  
+							$s='';if ($i == $from_day) $s=' selected="selected"';
 							$this->template->assign_block_vars('from_day', array(
 								'SELECT' =>'<option'.$s.' value="'.$i.'">'.$i.'</option>',
-							));	
+							));
 						}
 
 						$this->template->assign_block_vars('to_day', array(
 							'SELECT' =>'<option value=" ">'.$this->user->lang['DAY'].'</option>',
-						));	
+						));
 
 						for ($i=1;$i<=31;$i++)
 						{
-							$s='';if ($i == $to_day) $s=' selected="selected"';  
+							$s='';if ($i == $to_day) $s=' selected="selected"';
 							$this->template->assign_block_vars('to_day', array(
 								'SELECT' =>'<option'.$s.' value="'.$i.'">'.$i.'</option>',
-							));	
+							));
 						}
-	
+
 						$this->template->assign_block_vars('from_month', array(
 							'SELECT' =>'<option value=" ">'.$this->user->lang['MONTH'].'</option>',
-						));	
+						));
 
 						for ($i=1;$i<=12;$i++)
 						{
-							$s='';if ($i == $from_month) $s=' selected="selected"';  
+							$s='';if ($i == $from_month) $s=' selected="selected"';
 							$this->template->assign_block_vars('from_month', array(
 								'SELECT' =>'<option'.$s.' value="'.$i.'">'.$month_name[$i].'</option>',
-							));	
+							));
 						}
 
 						$this->template->assign_block_vars('to_month', array(
 							'SELECT' =>'<option value=" ">'.$this->user->lang['MONTH'].'</option>',
-						));	
+						));
 
 						for ($i=1;$i<=12;$i++)
 						{
-							$s='';if ($i == $to_month) $s=' selected="selected"';  
+							$s='';if ($i == $to_month) $s=' selected="selected"';
 							$this->template->assign_block_vars('to_month', array(
 								'SELECT' =>'<option'.$s.' value="'.$i.'">'.$month_name[$i].'</option>',
-							));	
+							));
 						}
 
 						$date = getdate();
@@ -1225,45 +1226,45 @@ class main_listener implements EventSubscriberInterface
 						}
 						$this->template->assign_block_vars('from_year', array(
 							'SELECT' =>'<option value=" ">'.$this->user->lang['YEAR'].'</option>',
-						));	
-	
+						));
+
 						for ($i=$year;$i<$year+10;$i++)
 						{
-							$s='';if ($i == $from_year) $s=' selected="selected"';  
+							$s='';if ($i == $from_year) $s=' selected="selected"';
 							$this->template->assign_block_vars('from_year', array(
 								'SELECT' =>'<option'.$s.' value="'.$i.'">'.$i.'</option>',
-							));	
+							));
 						}
 
 						$this->template->assign_block_vars('to_year', array(
 							'SELECT' =>'<option value=" ">'.$this->user->lang['YEAR'].'</option>',
-						));	
+						));
 
 						for ($i=$year;$i<$year+10;$i++)
 						{
-							$s='';if ($i == $to_year) $s=' selected="selected"';  
+							$s='';if ($i == $to_year) $s=' selected="selected"';
 							$this->template->assign_block_vars('to_year', array(
 								'SELECT' =>'<option'.$s.' value="'.$i.'">'.$i.'</option>',
-							));	
+							));
 						}
 						for ($i=1;$i<6;$i++)
 						{
-							$s='';if ($i == $calendar_repeat_day_number) $s=' selected="selected"';  
+							$s='';if ($i == $calendar_repeat_day_number) $s=' selected="selected"';
 							$this->template->assign_block_vars('every', array(
 								'SELECT' =>'<option'.$s.' value="'.$i.'">'.$i.'</option>',
-							));	
+							));
 						}
 						for ($i=1;$i<8;$i++)
 						{
-							$s='';if ($i == $calendar_repeat_day_name) $s=' selected="selected"';  
+							$s='';if ($i == $calendar_repeat_day_name) $s=' selected="selected"';
 							$this->template->assign_block_vars('weekday', array(
 								'SELECT' =>'<option'.$s.' value="'.$i.'">'.$day_name[$i].'</option>',
-							));	
+							));
 						}
 
 						$this->template->assign_block_vars('eventselect', array(
 							'SELECT' =>'<option style="color:#BBBBBB" value=" ">entfernen</option>',
-						));	
+						));
 
 						$sql = 'SELECT *
 							FROM ' . CALENDAR_EVENT_TABLE . '
@@ -1306,7 +1307,7 @@ class main_listener implements EventSubscriberInterface
 			$crmn		= 0;
 			$crwd		= 1;
 			$cc			= 0;
-			
+
 			$sql = 'SELECT *
 				FROM ' . CALENDAR_TABLE . '
 					WHERE post_id = ' . $post_id;
@@ -1371,11 +1372,11 @@ class main_listener implements EventSubscriberInterface
 				'WEEKDAY'				=>	$calendar_weekday,
 				'CANCELED'				=>	$calendar_canceled,
 			);
-	
+
 			if ($present & $event_id == '')
 			{
-				$sql = 'DELETE FROM ' . CALENDAR_TABLE . ' 
-					WHERE post_id = ' . $post_id; 
+				$sql = 'DELETE FROM ' . CALENDAR_TABLE . '
+					WHERE post_id = ' . $post_id;
 				$result = $this->db->sql_query($sql);
 			}
 
@@ -1403,27 +1404,27 @@ class main_listener implements EventSubscriberInterface
 						'CANCELED'				=>	$old_row['canceled'],
 					);
 					if($old_ary != $sql_ary)
-					{			
+					{
 						$sql = 'UPDATE ' . CALENDAR_TABLE . '
 							SET ' . $this->db->sql_build_array('UPDATE', $sql_ary) . '
 								WHERE post_id = ' . $post_id;
 						$result = $this->db->sql_query($sql);
-					
+
 						$notify = 'calendar_notify_change';
 					}
 					else
 					{
-						$notify = false; 
+						$notify = false;
 					}
 				}
 				else
 				{
 					// New Calendar-Entry
-					$sql = 'INSERT INTO ' . CALENDAR_TABLE . ' ' . $this->db->sql_build_array('INSERT', $sql_ary);	
+					$sql = 'INSERT INTO ' . CALENDAR_TABLE . ' ' . $this->db->sql_build_array('INSERT', $sql_ary);
 					$result = $this->db->sql_query($sql);
-					
+
 					$notify = 'calendar_notify';
-					
+
 				}
 				if($notify && $this->config['hjw_calendar_notify'] == true)
 				{
@@ -1471,7 +1472,7 @@ function calendar_messenger($mode, $author_id, $post_id, $pd)
 				}
 			}
 		}
-		
+
 		if($poster == false)
 		{
 			$part_user[] = $post_row['poster_id'];
@@ -1483,10 +1484,10 @@ function calendar_messenger($mode, $author_id, $post_id, $pd)
 			$sql = 'SELECT username, user_email, user_lang, user_inactive_reason
 				FROM ' . USERS_TABLE . '
 					WHERE user_id = ' . $part_user[$i];
-		
+
 			$user_result = $db->sql_query($sql);
 			$user_row = $db->sql_fetchrow($user_result);
-			
+
 			calendar_messenger_send($mode, $user_row['user_lang'], $user_row['user_email'], $config['sitename'], $author, $user_row['username'], $user_row['user_inactive_reason'], $post_row['post_subject'], $post_row['forum_id'], $post_id, $part_user[$i], $author_id, $pd);
 		}
 	}
@@ -1494,7 +1495,7 @@ function calendar_messenger($mode, $author_id, $post_id, $pd)
 	{
 		$sql = 'SELECT user_id, username, user_email, user_lang, user_inactive_reason
 			FROM ' . USERS_TABLE;
-		
+
 		$user_result = $db->sql_query($sql);
 		while($user_row = $db->sql_fetchrow($user_result))
 		{
@@ -1551,14 +1552,14 @@ function upcoming_events($upcoming)
 				WHERE id = ' . $event_id;
 		$result = $db->sql_query($sql);
 		$row	= $db->sql_fetchrow($result);
-		
+
 		$color	= $row['color'];
 		$big	= $row['big'];
 		$bcolor	= $row['bcolor'];
-			
+
 		$sql = 'SELECT *
 			FROM ' . POSTS_TABLE . '
-				WHERE post_id = ' . $post_id; 
+				WHERE post_id = ' . $post_id;
 		$post_result = $db->sql_query($sql);
 		$post_row = $db->sql_fetchrow($post_result);
 		$db->sql_freeresult($post_result);
@@ -1569,7 +1570,7 @@ function upcoming_events($upcoming)
 				$user_id = $user->data['user_id'];
 				$auth_array = $auth->acl_raw_data($user_id, 'f_read', $post_row['forum_id']);
 				if (isset($auth_array[$user_id][$post_row['forum_id']]['f_read']) && $auth_array[$user_id][$post_row['forum_id']]['f_read'])
-				{	
+				{
 					$bdate='';
 					$event_date = '';
 					if ($upcoming['calendar_repeat'])
@@ -1584,7 +1585,7 @@ function upcoming_events($upcoming)
 					$number = 0;
 					$nr = '';
 					$part='';
-	
+
 					if($config['hjw_calendar_number_participating'])
 					{
 						$sql = 'SELECT *
@@ -1599,7 +1600,7 @@ function upcoming_events($upcoming)
 									WHERE user_id = ' . $part_row['user_id'];
 							$user_result = $db->sql_query($sql);
 							$user_row = $db->sql_fetchrow($user_result);
-		
+
 							if ($part_row['participants'] == 'yes')
 							{
 								$number += (int)$part_row['number'];
@@ -1615,7 +1616,7 @@ function upcoming_events($upcoming)
 					$c_from[$c_c]		= date("Y-m-d", strtotime($upcoming['date_from']));
 					$c_to[$c_c]			= date("Y-m-d", strtotime($upcoming['date_to']));
 					$c_name[$c_c]		= $event_name;
-					$c_title[$c_c]		= $subject; 
+					$c_title[$c_c]		= $subject;
 					$c_part[$c_c]		= $part;
 					$c_nr[$c_c]			= $number;
 					$c_link[$c_c]		= $link;
@@ -1628,8 +1629,8 @@ function upcoming_events($upcoming)
 		}
 		else
 		{
-			$sql = 'DELETE FROM ' . CALENDAR_TABLE . ' 
-				WHERE post_id = ' . $post_id; 
+			$sql = 'DELETE FROM ' . CALENDAR_TABLE . '
+				WHERE post_id = ' . $post_id;
 			$result = $db->sql_query($sql);
 		}
 	}
