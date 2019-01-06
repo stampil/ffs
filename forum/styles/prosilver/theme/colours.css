@@ -40,7 +40,7 @@ a:hover { color: #D31141; }
 }
 
 .forumbg .header a:hover, .forabg .header a:hover, th a:hover {
-	color: #FFFFFF;
+	color: #A8D8FF;
 }
 
 /* Notification mark read link */
@@ -322,7 +322,7 @@ ul.forums {
 }
 
 ul.topiclist li {
-	color: #FFFFFF;
+	color: #4C5D77;
 }
 
 ul.topiclist dd {
