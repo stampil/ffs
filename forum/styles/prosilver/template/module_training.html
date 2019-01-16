@@ -1,0 +1,187 @@
+<!-- INCLUDE overall_header.html -->
+
+<div style="position:relative; color:black; min-height:700px; margin:auto; background-color:#cadceb; z-index:10">
+	<div style="position:relative; margin:auto; text-align:center; color:black; width:400px;">
+		<h1 style="margin:auto; color:black; font-size:3em;">Module de formation</h1>
+	</div>
+	<div style="clear:both"></div>
+	<!-- IF S_DISPLAY_NORMAL -->
+		<!-- IF S_DISPLAY_FFS00 -->
+		<div style="position:relative; left:70px; margin:auto; margin:10px; width:900px; padding:20px; background:white; border:1px solid black; text-align:center;">
+			<a href="{S_URL_MODULE_TRAINING_12}"><img src="images/NYLOGO_EAGLE_neutre.png" title="FFS1/2" width=200 ></a>
+			<a href="{S_URL_MODULE_TRAINING_03}"><img src="images/NYLOGO_AVENGERS_neutre.png" title="FFSXX" width=200 /></a>
+			<a href="{S_URL_MODULE_TRAINING_06}"><img src="images/NYLOGO_MOUSTIKS-2-3.jpg" title="FFS06" width=200 /></a>
+			<a href="{S_URL_MODULE_TRAINING_131}"><img src="images/LOGO_131.png" title="FFS131" width=200 /></a>
+		</div>
+		<!-- ELSE -->
+			<!-- IF S_USER_ADMIN -->
+					<div style="margin:auto; width:150px;"><a href="{S_URL_MODULE_TRAINING_FFS}&mode=1">Zone d'administration</a></div>
+					<div style="margin:auto; width:150px;"><a href="{S_URL_MODULE_TRAINING_FFS}&mode=3">Administration des pilotes</a></div>
+			<!-- ENDIF -->
+					<div style="margin:auto; width:150px;"><a href="{S_URL_MODULE_TRAINING}">Retour au menu</a></div>
+		<div style="position:relative; margin:auto; margin-top:10px;">
+			<div style="background-color:white; position:relative; width:500px; float:left; border: 1px solid black; margin-left:15px;">
+				<p>
+					<h3 style="text-align:center; font-size:1.5em">
+					<!-- IF S_DISPLAY_FFS == 6 -->
+						Cursus de formation de la FFS 06 - Hélicoptères
+					<!-- ELSEIF S_DISPLAY_FFS == 16 -->
+						Cursus de formation de la FFS 06 - UH-1H / Mi-8 (CURSUS EVAC)
+					<!-- ELSEIF S_DISPLAY_FFS == 26 -->
+						Cursus de formation de la FFS 06 - Mi-8 (CURSUS EVAC)
+					<!-- ELSEIF S_DISPLAY_FFS == 12 -->
+						Cursus de formation de la FFS 1/2 Cigognes - M-2000C
+					<!-- ELSEIF S_DISPLAY_FFS == 131 -->
+						Cursus de formation de la FFS 131
+					<!-- ELSEIF S_DISPLAY_FFS == 3 -->
+						Cursus de formation de la FFS XX - Mercenaires
+					<!-- ELSE -->
+						Cursus de formation de la FFS 0{S_DISPLAY_FFS}
+					<!-- ENDIF -->
+					</h3>
+					<!-- BEGIN modules -->
+						<!-- IF modules.TYPE -->
+							<!-- IF modules.EXAMEN --><span style="color:blue; font-weight:bold"><!-- ENDIF -->
+							<li>{modules.MOD}.{modules.TYPE} : {modules.NOM}</li>
+							<!-- IF modules.EXAMEN --></span><!-- ENDIF -->
+						<!-- ELSE -->
+							<!-- IF modules.MOD > 0 --></ul><!-- ENDIF -->
+							<br /><span style="margin-left:10px; font-size:1.1em; font-weight:bold;">Module {modules.MOD} : {modules.NOM}</span><br /><ul style="margin-left:40px;">
+						<!-- ENDIF -->
+					<!-- END modules -->
+					</ul>
+				</p>
+			</div>
+			<div style="background-color:white; position:relative; width:500px; float:left; border: 1px solid black; margin-left:15px;">
+				<p>
+					<h3 style="text-align:center; font-size:1.5em">Progression des pilotes</h3>
+					<div style="padding:10px;">
+					<table>
+					<!-- BEGIN pilote -->	
+						<tr><td><a href="{pilote.LINK}">{pilote.PSEUDO}</a></td><td>
+						<!-- BEGIN module -->
+							<!-- IF pilote.module.TITLE -->
+								<div style="margin:1px; position:relative; float:left;">&nbsp;</div>
+							<!-- ELSE -->
+								<!-- IF pilote.module.STATUS == 'valid' -->
+									<!-- IF pilote.module.EXAMEN == 1 --><div style="margin:1px; position:relative; float:left;"><img style="position:relative; top:7px;" src="images/exam.gif" title="{pilote.module.NOM}" /></div><!-- ELSE -->
+									<div style="margin:1px; position:relative; float:left;"><img style="position:relative; top:7px;" src="images/good.gif" title="{pilote.module.NOM}" /></div>
+									<!-- ENDIF -->
+								<!-- ELSEIF pilote.module.STATUS == 'wip' -->
+									<div style="margin:1px; position:relative; float:left;"><img style="position:relative; top:7px;" src="images/eva.gif" title="{pilote.module.NOM}" /></div>
+								<!-- ELSE -->
+									<div style="margin:1px; position:relative; float:left;"><img style="position:relative; top:7px;" src="images/bad.gif" title="{pilote.module.NOM}" /></div>
+								<!-- ENDIF -->
+							<!-- ENDIF -->
+						<!-- END module -->
+						</td></tr>
+					<!-- END pilote -->
+					</table>
+					</div>
+				</p>
+            </div>
+			<div style="clear:both"></div>
+		</div>		
+		<!-- ENDIF -->
+	<!-- ELSEIF S_DISPLAY_PILOT_ADMIN -->
+		<!-- IF S_DISPLAY_FFS00 -->
+		<div style="position:relative; margin:auto; margin:10px; background:white; border:1px solid black;">
+			<p>Choisissez votre escadron:
+			<ul style="margin-left:30px; width:900px;">
+				<li><a href="module_training.php?FFS=02">FFS-02</a></li>
+				<li><a href="{S_URL_MODULE_TRAINING_03}">FFS-03</a></li>
+			</ul></p>
+		</div>
+		<!-- ELSE -->
+		<div style="margin:auto; width:150px;"><a href="{S_URL_MODULE_TRAINING_FFS}">Retour au module</a></div>
+		<div style="position:relative; margin:auto; margin-top:10px;">
+				<div style="background-color:white; position:relative; border: 1px solid black; margin-left:15px;">
+					<p>
+							<h3 style="text-align:center; font-size:1.5em">
+						Liste des pilotes de la FFS-0{S_DISPLAY_FFS}
+					</h3>
+						<!-- BEGIN pilote -->
+							<li style="margin-left:100px">{pilote.PSEUDO}  <a href="{S_URL_MODULE_TRAINING_FFS}&mode=3&id={pilote.ID_FORUM}&action=delete"><img src="styles/prosilver/imageset/edit-delete-icon.png" width=16 height=16 title="Supprimer"></a></li> 
+						<!-- END pilote -->
+							</ul>
+						</p>
+				</div>
+		</div>
+		
+		<div style="position:relative; margin:auto; margin-top:10px;">
+				<div style="background-color:white; position:relative; border: 1px solid black; margin-left:15px;">
+					<div style="width:500px; margin:auto;">
+						<form action="module_training.php?FFS=0{S_DISPLAY_FFS}&mode=3&action=add" method="post">
+							<table>
+								<thead>
+									<td style="margin:auto; text-align:center">Pilote</td><td style="width:50px; margin:auto; text-align:center">Id forum user</td><td style="width:50px; margin:auto; text-align:center">Leader ?</td>
+								</thead>
+								<tbody>
+									<td style="margin:auto; text-align:center"><input type="text" name="add_pilote" id="add_pilote" size=40 /></td>
+									<td style="margin:auto; text-align:center"><input type="text" name="add_id" id="add_id" size=3 /></td>
+									<td style="margin:auto; text-align:center"><input type="checkbox" name="leader" value="1"></input></td>
+									<td><input type="submit" value="Enregistrer" /></td>
+								</tbody>
+							</table>
+						</form>
+					</div>
+				</div>
+			</div>
+		<!-- ENDIF -->
+	<!-- ELSEIF S_DISPLAY_ADMIN -->
+		<!-- IF S_DISPLAY_FFS00 -->
+		<div style="position:relative; margin:auto; margin:10px; background:white; border:1px solid black;">
+			<p>Choisissez votre escadron:
+			<ul style="margin-left:30px; width:900px;">
+				<li><a href="module_training.php?FFS=02">FFS-02</a></li>
+				<li><a href="module_training.php?FFS=03">FFS-03</a></li>
+			</ul></p>
+		</div>
+		<!-- ELSE -->
+			<div style="margin:auto; width:150px;"><a href="{S_URL_MODULE_TRAINING_FFS}">Retour au module</a></div>
+			<div style="position:relative; margin:auto; margin-top:10px;">
+				<div style="background-color:white; position:relative; border: 1px solid black; margin-left:15px;">
+					<p>
+							<h3 style="text-align:center; font-size:1.5em">
+						Programme de formation de la FFS-0{S_DISPLAY_FFS}
+					</h3>
+							<!-- BEGIN modules -->
+								<!-- IF modules.TYPE -->
+									<!-- IF modules.EXAMEN --><span style="color:blue; font-weight:bold"><!-- ENDIF -->
+									<li>{modules.MOD}.{modules.TYPE} : {modules.NOM}  <a href="{S_URL_MODULE_TRAINING_FFS}&mode=1&chap={modules.MOD}&schap={modules.TYPE}&action=delete"><img src="styles/prosilver/imageset/edit-delete-icon.png" width=16 height=16 title="Supprimer"></a></li> 
+									<!-- IF modules.EXAMEN --></span><!-- ENDIF -->
+								<!-- ELSE -->
+									<!-- IF modules.MOD > 0 --></ul><!-- ENDIF -->
+									<br /><span style="margin-left:10px; font-size:1.1em; font-weight:bold;">Module {modules.MOD} : {modules.NOM}</span> <a href="{S_URL_MODULE_TRAINING_FFS}&mode=1&chap={modules.MOD}&schap={modules.TYPE}&action=delete"><img src="styles/prosilver/imageset/edit-delete-icon.png" width=16 height=16 title="Supprimer"></a><br /><ul style="margin-left:40px;">
+								<!-- ENDIF -->
+							<!-- END modules -->
+							</ul>
+						</p>
+				</div>
+			</div>
+
+			<div style="position:relative; margin:auto; margin-top:10px;">
+				<div style="background-color:white; position:relative; border: 1px solid black; margin-left:15px;">
+					<div style="width:500px; margin:auto;">
+						<form action="module_training.php?FFS=0{S_DISPLAY_FFS}&mode=1&action=add" method="post">
+							<table>
+								<thead>
+									<td style="width:50px; margin:auto; text-align:center">Module</td><td style="width:50px; margin:auto; text-align:center">Ss-module</td><td style="margin:auto; text-align:center">Intitulé</td><td style="width:50px; margin:auto; text-align:center">Examen ?</td>
+								</thead>
+								<tbody>
+									<td style="width:50px; margin:auto; text-align:center"><input type="text" name="add_module" id="add_module" size=2 maxlength=2 /></td>
+									<td style="width:50px; margin:auto; text-align:center"><input type="text" name="add_ssmodule" id="add_ssmodule" size=2 maxlength=2 /></td>
+									<td style="margin:auto; text-align:center"><input type="text" name="add_intitule" id="add_intitule" size=40 /></td>
+									<td style="margin:auto; text-align:center"><input type="checkbox" name="examen" value="1"></input></td>
+									<td><input type="submit" value="Enregistrer" /></td>
+								</tbody>
+							</table>
+						</form>
+					</div>
+				</div>
+			</div>
+		<!-- ENDIF -->
+
+	<!-- ENDIF -->
+</div>
+<!-- INCLUDE overall_footer.html -->

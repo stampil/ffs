@@ -202,7 +202,8 @@
 			$id_pilote = $data_pilote['id_forum'];
 			$template->assign_block_vars('pilote', array(
 				'PSEUDO' => $pilote,
-				'ID_FORUM' => $id_pilote
+				'ID_FORUM' => $id_pilote,
+                                'LINK' => append_sid("fiche_pilote.php?id=$id_pilote")
 			));
 			
 			foreach($data as $key => $tableau)
@@ -250,6 +251,7 @@
 		'S_DISPLAY_NORMAL' => $disp_normal,
 		'S_DISPLAY_PILOT_ADMIN' => $disp_pilot_admin,
 		'S_USER_ADMIN' => $isauth_admin,
+                'S_URL_MODULE_TRAINING_FFS'  => append_sid('module_training.php?FFS='.$FFS),
 		'S_TEST' => $module_add.$ssmodule_add.$intitule_add
 	));
 

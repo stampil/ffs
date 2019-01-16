@@ -4384,6 +4384,14 @@ function page_header($page_title = '', $display_online_list = false, $item_id = 
 		}
 	}
         
+        $template->assign_vars(array(
+                'S_URL_MODULE_TRAINING'  => append_sid('module_training.php'),
+                'S_URL_MODULE_TRAINING_12'  => append_sid('module_training.php?FFS=12'),
+                'S_URL_MODULE_TRAINING_03'  => append_sid('module_training.php?FFS=03'),
+                'S_URL_MODULE_TRAINING_06'  => append_sid('module_training.php?FFS=06'),
+                'S_URL_MODULE_TRAINING_131'  => append_sid('module_training.php?FFS=131')
+            ));
+        
         //Récupération infos Calendrier
 	$time_now = time()-2*3600;
 	
@@ -4476,7 +4484,8 @@ where date_from >= now() and canceled=0 order by date_from asc limit 7;";
 				'LARGEUR_VALID' => $largeur_valid,
 				'LARGEUR_WIP' => $largeur_wip,
 				'LARGEUR_NO' => $largeur_no,
-				'PROGRESSION' => $progression
+				'PROGRESSION' => $progression,
+                                'LINK' => append_sid("fiche_pilote.php?id=$id_pilote")
 			));
                         
 		}
@@ -4524,7 +4533,8 @@ where date_from >= now() and canceled=0 order by date_from asc limit 7;";
 				'LARGEUR_VALID' => $largeur_valid,
 				'LARGEUR_WIP' => $largeur_wip,
 				'LARGEUR_NO' => $largeur_no,
-				'PROGRESSION' => $progression
+				'PROGRESSION' => $progression,
+                                'LINK' => append_sid("fiche_pilote.php?id=$id_pilote")
 			));
                         
 		}
@@ -4612,7 +4622,8 @@ where date_from >= now() and canceled=0 order by date_from asc limit 7;";
 				'LARGEUR_VALID' => $largeur_valid,
 				'LARGEUR_WIP' => $largeur_wip,
 				'LARGEUR_NO' => $largeur_no,
-				'PROGRESSION' => $progression
+				'PROGRESSION' => $progression,
+                                'LINK' => append_sid("fiche_pilote.php?id=$id_pilote")
 			));
 		}
                 
@@ -4700,7 +4711,8 @@ where date_from >= now() and canceled=0 order by date_from asc limit 7;";
 				'LARGEUR_VALID' => $largeur_valid,
 				'LARGEUR_WIP' => $largeur_wip,
 				'LARGEUR_NO' => $largeur_no,
-				'PROGRESSION' => $progression
+				'PROGRESSION' => $progression,
+                                'LINK' => append_sid("fiche_pilote.php?id=$id_pilote")
 			));
 		}
 
@@ -4747,7 +4759,8 @@ where date_from >= now() and canceled=0 order by date_from asc limit 7;";
 			));
 		}
                 
-                
+ 
+
 
 	/** @var \phpbb\controller\helper $controller_helper */
 	$controller_helper = $phpbb_container->get('controller.helper');
@@ -5051,8 +5064,8 @@ function page_footer($run_cron = true, $display_template = true, $exit_handler =
 		'CREDIT_LINE'			=> $user->lang('POWERED_BY', '<a href="https://www.phpbb.com/">phpBB</a>&reg; Forum Software &copy; phpBB Limited'),
 
 		'U_ACP' => ($auth->acl_get('a_') && !empty($user->data['is_registered'])) ? append_sid("{$phpbb_admin_path}index.$phpEx", false, true, $user->session_id) : '')
-	);
-
+                    );
+                
 	// Call cron-type script
 	$call_cron = false;
 	if (!defined('IN_CRON') && !$config['use_system_cron'] && $run_cron && !$config['board_disable'] && !$user->data['is_bot'] && !$cache->get('_cron.lock_check'))
