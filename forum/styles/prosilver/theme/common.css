@@ -1332,3 +1332,12 @@ body{
 ul{
    list-style-type: none; 
 }
+
+.mchat-text .postimage{
+    max-height: 150px;   
+}
+
+.mchat-text object{
+    width : 247px;
+    height: 150px;
+}
