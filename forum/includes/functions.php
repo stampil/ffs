@@ -4396,7 +4396,8 @@ function page_header($page_title = '', $display_online_list = false, $item_id = 
 	$time_now = time()-2*3600;
 	
 	$sql = "SELECT * FROM `phpbb_calendar` c join phpbb_calendar_event e ON c.event_id=e.id
-where date_from >= now() and canceled=0 order by date_from asc limit 7;";
+where date_from >= '".date("Y-m-d")."' and canceled=0 order by date_from asc limit 7;";
+
 	$result = $db->sql_query($sql);
 	while($data = $db->sql_fetchrow($result))
 	{
